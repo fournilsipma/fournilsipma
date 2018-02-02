@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -o errexit -o nounset
 
@@ -10,7 +10,7 @@ fi
 
 rev=$(git rev-parse --short HEAD)
 
-cd stage/_book
+cd dist
 
 git init
 git config user.name "fournilsipma bot"

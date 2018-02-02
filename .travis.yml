@@ -4,4 +4,4 @@ node_js:
 script:
   - make
 after_success:
-  - sh deploy.sh
+  - bash deploy.sh
