@@ -1,0 +1,28 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-image: url("../img/travaux.jpg");
+  background-size: cover;
+  background-color: #cccccc;
+}
+
+.container-fluid {
+}
+
+.vertical-align {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+h1 {
+  width: 100%;
+  text-align: center;
+  font-size: 80px;
+  color: black;
+  background-color: white;
+}
