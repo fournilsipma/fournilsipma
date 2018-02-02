@@ -1,5 +1,5 @@
 PATH := node_modules/.bin:$(PATH)
-DIST=./docs
+DIST=./dist
 
 build: npm css fonts
 
