@@ -19,10 +19,13 @@ body {
   text-align: center;
 }
 
-h1 {
-  width: 100%;
+.banner {
   text-align: center;
-  font-size: 80px;
   color: black;
   background-color: white;
+  width: 100%;
+}
+
+h1 {
+  font-size: 60px;
 }
