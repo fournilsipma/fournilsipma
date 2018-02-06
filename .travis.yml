@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "8.9"
+install:
+  - sudo apt install hugo
 script:
   - make
 after_success:
