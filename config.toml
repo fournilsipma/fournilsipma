@@ -1,0 +1,5 @@
+baseURL = "http://fournilsipma.fr/"
+languageCode = "fr-fr"
+title = "Fournil Sipma"
+staticDir = "dist/static"
+publishDir = "dist/public"

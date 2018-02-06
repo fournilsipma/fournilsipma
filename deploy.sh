@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DIST="dist/public"
+
 set -o errexit -o nounset
 
 if [ "$TRAVIS_BRANCH" != "master" ]
@@ -10,7 +12,7 @@ fi
 
 rev=$(git rev-parse --short HEAD)
 
-cd dist
+cd "$DIST"
 
 git init
 git config user.name "fournilsipma bot"
