@@ -5,10 +5,11 @@
 {{ define "footer" }}
 <script>
   var fournilNav = document.getElementById('fournil-nav');
+  var fournilHeader = document.getElementById('fournil-header');
 
   window.addEventListener('scroll', function (e) {
     var nav = document.getElementById('fournil-nav');
-    if (nav.offsetTop > 400) {
+    if (nav.offsetTop > fournilHeader.clientHeight) {
       nav.classList.remove('fournil-nologo-nav');
     } else {
       nav.classList.add('fournil-nologo-nav');
@@ -22,7 +23,7 @@
 {{ define "fournil-nav-classes" }} fournil-nologo-nav{{ end }}
 
 {{ define "header" }}
-<div class="header">
+<div id="fournil-header" class="header">
   <div class="fournil-logo-bio">
     <span>
       <img src="{{ .Site.BaseURL }}img/AB.svg" alt="logo AB" onerror="this.src='{{ .Site.BaseURL }}img/AB.png'">
