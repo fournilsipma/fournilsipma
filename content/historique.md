@@ -20,3 +20,7 @@ de vente directe.
 C'est avec fierté et plaisir que nous vous accueillons désormais au
 fournil pour échanger sur nos métiers , nos produits, et leurs origines
 on ne peut plus locales.
+
+<div class="text-center">
+  <img class="fournil-content-img" src="{{< image >}}camion_patate.jpg" alt="Camion à patates Sipma">
+</div>
