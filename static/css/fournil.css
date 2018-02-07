@@ -53,3 +53,11 @@ address span {
 .fournil-content-img {
   width: 500px;
 }
+
+.navbar-brand img {
+  width: 150px;
+}
+
+.fournil-nologo-nav .navbar-brand img {
+  display: none;
+}

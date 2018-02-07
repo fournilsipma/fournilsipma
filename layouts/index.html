@@ -3,9 +3,23 @@
 {{ end }}
 
 {{ define "footer" }}
+<script>
+  var fournilNav = document.getElementById('fournil-nav');
+
+  window.addEventListener('scroll', function (e) {
+    var nav = document.getElementById('fournil-nav');
+    if (nav.offsetTop > 400) {
+      nav.classList.remove('fournil-nologo-nav');
+    } else {
+      nav.classList.add('fournil-nologo-nav');
+    }
+  });
+</script>
 <script src="{{ .Site.BaseURL }}js/leaflet.js"></script>
 <script src="{{ .Site.BaseURL }}js/fournil-map.js"></script>
 {{ end }}
+
+{{ define "fournil-nav-classes" }} fournil-nologo-nav{{ end }}
 
 {{ define "header" }}
 <div class="header">
@@ -23,7 +37,6 @@
     </address>
   </div>
 </div>
-{{ partial "menu.html" . }}
 {{ end}}
 
 {{ define "main" }}

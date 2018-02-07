@@ -10,22 +10,26 @@
   </head>
   <body>
     {{ block "header" . }}
-    <div class="header">
-      <div class="logo">
-        <img class="logo-img" src="{{ .Site.BaseURL }}img/logo_pain_transparent.png" alt="logo">
-        <address>
-          <span class="title">{{ .Site.Title }}</span>
-          {{ range $address := .Site.Params.Address }}
-          <span class="address">{{ $address }}</span>
-          {{ end }}
-          <span class="phone">{{ .Site.Params.Phone }}</span>
-          <span class="email">
-            <a href="mailto:{{ .Site.Params.Email }}">{{ .Site.Params.Email }}</a>
-          </span>
-        </address>
+    {{ end }}
+    {{ block "menu" .}}
+    <nav id="fournil-nav" class="navbar navbar-expand-lg navbar-light bg-light sticky-top{{ block "fournil-nav-classes" . }}{{ end }}">
+      <a class="navbar-brand" href={{ .Site.BaseURL }}>
+        <img src="{{ .Site.BaseURL }}/img/logo_pain_transparent.png">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Afficher/Cacher le menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            {{ $currentPage := . }}
+            {{ range .Site.Menus.main }}
+            <li class="nav-item{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}">
+              <a class="nav-link" href="{{ .URL }}" title="{{ .Name }}">{{ .Name }}</a>
+            </li>
+            {{ end }}
+        </ul>
       </div>
-    </div>
-    {{ partial "menu.html" . }}
+    </nav>
     {{ end }}
     <div class="container-fluid">
     {{ block "main" . }}
