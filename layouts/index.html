@@ -25,16 +25,7 @@
 <div class="header">
   <div class="logo">
     <img class="logo-img" src="{{ .Site.BaseURL }}img/logo_pain_transparent.png" alt="logo">
-    <address>
-      <span class="title">{{ .Site.Title }}</span>
-      {{ range $address := .Site.Params.Address }}
-      <span class="address">{{ $address }}</span>
-      {{ end }}
-      <span class="phone">{{ .Site.Params.Phone }}</span>
-      <span class="email">
-        <a href="mailto:{{ .Site.Params.Email }}">{{ .Site.Params.Email }}</a>
-      </span>
-    </address>
+    {{ partial "address.html" . }}
   </div>
 </div>
 {{ end}}
@@ -43,6 +34,7 @@
 <div class="vertical-align">
   <div class="banner">
     {{ .Content }}
+    {{ partial "address.html" . }}
     <div id="fournilmap"></div>
   </div>
 </div>

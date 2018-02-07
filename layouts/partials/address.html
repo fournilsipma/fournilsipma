@@ -1,0 +1,11 @@
+<address>
+  {{ range $address := .Site.Params.Address }}
+  <span class="address">{{ $address }}</span>
+  {{ end }}
+  <span class="phone">
+    <a href="tel:{{ .Site.Params.Phone }}">{{ .Site.Params.Phone }}</a>
+  </span>
+  <span class="email">
+    <a href="mailto:{{ .Site.Params.Email }}">{{ .Site.Params.Email }}</a>
+  </span>
+</address>
