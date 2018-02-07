@@ -15,6 +15,10 @@ css:
 
 js:
 	mkdir -p $(DIST_STATIC)/js && cp node_modules/leaflet/dist/leaflet.js $(DIST_STATIC)/js/
+	cp node_modules/jquery/dist/jquery.min.js $(DIST_STATIC)/js/
+	cp node_modules/popper.js/dist/umd/popper.min.js $(DIST_STATIC)/js/
+	cp node_modules/bootstrap/js/dist/util.js $(DIST_STATIC)/js/
+	cp node_modules/bootstrap/js/dist/collapse.js $(DIST_STATIC)/js/
 	cp $(STATIC)/js/* $(DIST_STATIC)/js
 
 fonts:
