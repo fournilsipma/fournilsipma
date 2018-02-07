@@ -3,3 +3,8 @@ languageCode = "fr-fr"
 title = "Fournil Sipma"
 staticDir = "dist/static"
 publishDir = "dist/public"
+
+[params]
+email = "fournilsipma@gmail.com"
+phone = "+33 6 27 20 30 72"
+address = [ "16 rue des Sapins", "27620 Gasny" ]
