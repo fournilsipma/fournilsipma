@@ -10,5 +10,16 @@
 	<atom:link href="http://fournilsipma.fr/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>Historique</title>
+      <link>http://fournilsipma.fr/historique/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://fournilsipma.fr/historique/</guid>
+      <description>Installés sur la ferme familiale depuis 1998, nous avons engagés une conversion en agriculture biologique des parcelles de terre les plus fertiles (40 ha) depuis 2015.
+Dans la logique d&amp;rsquo;une sensibilité environnementale particulière, nous avons également planté des lignes agroforestières sur une partie de ces mêmes parcelles (10 ha) en 2013.
+C&amp;rsquo;est en 2012 que nous avons réfléchi à la transformation du grain produit sur la ferme en farine puis en pain à l&amp;rsquo;occasion d&amp;rsquo;une formation paysan-boulanger, et c&amp;rsquo;est 5 ans plus tard, en octobre dernier, que la rencontre avec Geoffrey le boulanger a permis le déclenchement du projet de vente directe.</description>
+    </item>
+    
   </channel>
 </rss>
