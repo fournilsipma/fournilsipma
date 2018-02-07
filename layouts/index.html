@@ -1,3 +1,12 @@
+{{ define "head" }}
+<link href="{{ .Site.BaseURL }}css/leaflet.css" rel="stylesheet" type="text/css">
+{{ end }}
+
+{{ define "footer" }}
+<script src="{{ .Site.BaseURL }}js/leaflet.js"></script>
+<script src="{{ .Site.BaseURL }}js/fournil-map.js"></script>
+{{ end }}
+
 {{ define "header" }}
 <div class="header">
   <div class="logo">
@@ -21,6 +30,7 @@
     <div class="container-fluid">
       <div class="vertical-align">
         <div class="banner">
+          <div id="fournilmap"></div>
           {{ .Content }}
         </div>
       </div>

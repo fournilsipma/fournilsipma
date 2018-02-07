@@ -3,14 +3,19 @@ PATH := node_modules/.bin:$(PATH)
 STATIC=./static
 DIST_STATIC=./dist/static
 
-build: npm css fonts img site
+build: npm css js fonts img site
 
 npm:
 	npm install
 
 css:
 	mkdir -p $(DIST_STATIC)/css && cp node_modules/bootstrap/dist/css/bootstrap.min.css $(DIST_STATIC)/css/
+	cp node_modules/leaflet/dist/leaflet.css $(DIST_STATIC)/css/
 	cp $(STATIC)/css/* $(DIST_STATIC)/css
+
+js:
+	mkdir -p $(DIST_STATIC)/js && cp node_modules/leaflet/dist/leaflet.js $(DIST_STATIC)/js/
+	cp $(STATIC)/js/* $(DIST_STATIC)/js
 
 fonts:
 	mkdir -p $(DIST_STATIC)/fonts && cp -R node_modules/font-awesome/fonts/* $(DIST_STATIC)/fonts/
@@ -18,6 +23,7 @@ fonts:
 
 img:
 	mkdir -p $(DIST_STATIC)/img && cp $(STATIC)/img/* $(DIST_STATIC)/img
+	cp node_modules/leaflet/dist/images/* $(DIST_STATIC)/img
 
 site:
 	hugo
