@@ -23,11 +23,11 @@ body {
   min-height: 400px
 }
 
-.logo {
+.fournil-logo {
   width: 100%;
 }
 
-.logo-img {
+.fournil-logo-img {
   vertical-align: middle;
   display: block;
   width: 400px;
@@ -35,7 +35,7 @@ body {
   margin: 0 auto;
 }
 
-.logo address span {
+.fournil-logo address span {
   font-size: 20px;
 }
 
@@ -60,4 +60,19 @@ address span {
 
 .fournil-nologo-nav .navbar-brand img {
   display: none;
+}
+
+.fournil-logo-bio {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.fournil-logo-bio span {
+  display: inline-block;
+}
+
+.fournil-logo-bio img {
+  height: 60px;
+  display: inline-block;
 }
