@@ -12,7 +12,7 @@
     {{ block "header" . }}
     {{ end }}
     {{ block "menu" .}}
-    <nav id="fournil-nav" class="navbar navbar-expand-lg navbar-light bg-light sticky-top{{ block "fournil-nav-classes" . }}{{ end }}">
+    <nav id="fournil-nav" class="navbar navbar-expand-sm navbar-light bg-light sticky-top{{ block "fournil-nav-classes" . }}{{ end }}">
       <a class="navbar-brand" href={{ .Site.BaseURL }}>
         <img src="{{ .Site.BaseURL }}/img/logo_pain_transparent.png">
       </a>
