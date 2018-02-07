@@ -1,31 +1,47 @@
 html, body {
-  height: 100%;
-  width: 100%;
 }
 
 body {
-  background-image: url("../img/travaux.jpg");
-  background-size: cover;
-  background-color: #cccccc;
 }
 
 .container-fluid {
 }
 
 .vertical-align {
-  display: flex;
-  align-items: center;
-  min-height: 100vh;
-  text-align: center;
 }
 
 .banner {
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  background: #f4f4f4 url(../img/farine.jpg) top center;
+  background-size: cover;
   text-align: center;
-  color: black;
-  background-color: white;
+  width: 100%;
+  min-height: 400px
+}
+
+.logo {
   width: 100%;
 }
 
-h1 {
-  font-size: 60px;
+.logo-img {
+  vertical-align: middle;
+  display: block;
+  width: 400px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.logo address span {
+  font-size: 20px;
+}
+
+.logo address span {
+  display: block;
+}
+
+.header nav {
 }
