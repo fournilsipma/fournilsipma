@@ -1,5 +1,6 @@
 ---
 title: "Accueil"
+menu: "main"
 ---
 
 # Site en construction...
