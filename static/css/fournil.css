@@ -27,10 +27,17 @@ body {
   width: 100%;
 }
 
+@media (max-width:576px) {
+  .fournil-logo {
+    padding-top: 100px;
+  }
+}
+
 .fournil-logo-img {
   vertical-align: middle;
   display: block;
-  width: 400px;
+  width: 90%;
+  max-width: 400px;
   overflow: hidden;
   margin: 0 auto;
 }
