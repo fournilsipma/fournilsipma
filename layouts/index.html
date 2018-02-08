@@ -1,5 +1,5 @@
 {{ define "head" }}
-<link href="{{ .Site.BaseURL }}css/leaflet.css" rel="stylesheet" type="text/css">
+<link href="{{ "css/leaflet.css" | relURL }}" rel="stylesheet" type="text/css">
 {{ end }}
 
 {{ define "footer" }}
@@ -16,11 +16,11 @@
     }
   });
 </script>
-<script src="{{ .Site.BaseURL }}js/leaflet.js"></script>
-<script src="{{ .Site.BaseURL }}js/jquery.min.js"></script>
-<script src="{{ .Site.BaseURL }}js/util.js"></script>
-<script src="{{ .Site.BaseURL }}js/dropdown.js"></script>
-<script src="{{ .Site.BaseURL }}js/fournil-map.js"></script>
+<script src="{{ "js/leaflet.js" | relURL }}"></script>
+<script src="{{ "js/jquery.min.js" | relURL }}"></script>
+<script src="{{ "js/util.js" | relURL }}"></script>
+<script src="{{ "js/dropdown.js" | relURL }}"></script>
+<script src="{{ "js/fournil-map.js" | relURL }}"></script>
 {{ end }}
 
 {{ define "fournil-nav-classes" }} fournil-nologo-nav{{ end }}
@@ -29,14 +29,14 @@
 <div id="fournil-header" class="header">
   <div class="fournil-logo-bio">
     <span>
-      <img src="{{ .Site.BaseURL }}img/AB.svg" alt="logo AB" onerror="this.src='{{ .Site.BaseURL }}img/AB.png'">
+      <img src="{{ "img/AB.svg" | relURL }}" alt="logo AB" onerror="this.src='{{ "img/AB.png" | relURL }}'">
     </span>
     <span>
-      <img src="{{ .Site.BaseURL }}img/EU_Organic.svg" alt="logo bio EU" onerror="this.src='{{ .Site.BaseURL }}img/EU_Organic.png'">
+      <img src="{{ "img/EU_Organic.svg" | relURL }}" alt="logo bio EU" onerror="this.src='{{ "img/EU_Organic.png" | relURL }}'">
     </span>
   </div>
   <div class="fournil-logo">
-    <img class="fournil-logo-img" src="{{ .Site.BaseURL }}img/logo_pain_transparent.png" alt="logo">
+    <img class="fournil-logo-img" src="{{ "img/logo_pain_transparent.png" | relURL }}" alt="logo">
     {{ partial "address.html" . }}
   </div>
 </div>

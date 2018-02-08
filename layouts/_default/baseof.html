@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <title>{{ block "title" . }}{{ .Site.Title }} - {{ .Title }}{{ end }}</title>
     {{ block "head" . }}{{ end }}
-    <link href="{{ .Site.BaseURL }}css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="{{ .Site.BaseURL }}css/fournil.css" rel="stylesheet" type="text/css">
+    <link href="{{ "css/bootstrap.min.css" | relURL }}" rel="stylesheet" type="text/css">
+    <link href="{{ "css/fournil.css" | relURL }}" rel="stylesheet" type="text/css">
   </head>
   <body>
     {{ block "header" . }}
     {{ end }}
     {{ block "menu" .}}
     <nav id="fournil-nav" class="navbar navbar-expand-sm navbar-light bg-light sticky-top{{ block "fournil-nav-classes" . }}{{ end }}">
-      <a class="navbar-brand" href={{ .Site.BaseURL }}>
-        <img src="{{ .Site.BaseURL }}/img/logo_pain_transparent.png">
+      <a class="navbar-brand" href={{ "/" | relURL }}>
+        <img src="{{ "img/logo_pain_transparent.png" | relURL }}">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Afficher/Cacher le menu">
         <span class="navbar-toggler-icon"></span>
@@ -35,10 +35,10 @@
     {{ block "main" . }}
     {{ end }}
     </div>
-    <script src="{{ .Site.BaseURL }}js/jquery.min.js"></script>
-    <script src="{{ .Site.BaseURL }}js/popper.min.js"></script>
-    <script src="{{ .Site.BaseURL }}js/util.js"></script>
-    <script src="{{ .Site.BaseURL }}js/collapse.js"></script>
+    <script src="{{ "js/jquery.min.js" | relURL }}"></script>
+    <script src="{{ "js/popper.min.js" | relURL }}"></script>
+    <script src="{{ "js/util.js" | relURL }}"></script>
+    <script src="{{ "js/collapse.js" | relURL }}"></script>
     {{ block "footer" . }}
     {{ end }}
   </body>
