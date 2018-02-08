@@ -1,0 +1,28 @@
+[ { "name": "Pain bis"
+  , "description": "Froment T80, levain de seigle, sel eau"
+  , "note": "Allergène céréales contentant du gluten: froment, seigle"
+  , "variantes":
+    [ { "name": "Boule 600g"
+      , "poids": 600
+      , "prix": 3.20
+      , "prixkg": 5.33
+      }
+    , { "name": "Boule 1kg"
+      , "poids": 1000
+      , "prix": 5.20
+      , "prixkg": 5.20
+      }
+    ]
+  }
+, { "name": "Pain de méteil"
+  , "description": "Froment T80/Seigle T150, levain de seigle, sel eau"
+  , "note": "Allergène céréales contentant du gluten: froment, seigle"
+  , "variantes":
+    [ { "name": "Boule 600g"
+      , "poids": 600
+      , "prix": 3.30
+      , "prixkg": 5.50
+      }
+    ]
+  }
+]
