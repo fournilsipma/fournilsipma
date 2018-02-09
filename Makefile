@@ -20,30 +20,33 @@ css:
 		node_modules/font-awesome/css/font-awesome.css \
 		$(STATIC)/css/fournil.css \
 		> $(TMP)/css/fournil.css
+	csso $(TMP)/css/fournil.css --output $(TMP)/css/fournil.min.css
+	cp $(TMP)/css/fournil.min.css $(DIST_STATIC)/css
 	cat \
 		node_modules/leaflet/dist/leaflet.css \
 		> $(TMP)/css/fournil-map.css
-	cp $(TMP)/css/fournil.css $(DIST_STATIC)/css
-	csso $(TMP)/css/fournil.css --output $(TMP)/css/fournil.min.css
-	cp $(TMP)/css/fournil-map.css $(DIST_STATIC)/css
 	csso $(TMP)/css/fournil-map.css --output $(TMP)/css/fournil-map.min.css
+	cp $(TMP)/css/fournil-map.min.css $(DIST_STATIC)/css
 
 js:
 	mkdir -p $(TMP)/js/
 	mkdir -p $(DIST_STATIC)/js
+	cp node_modules/jquery/dist/jquery.min.js $(DIST_STATIC)/js/
+	cp node_modules/popper.js/dist/umd/popper.min.js $(DIST_STATIC)/js/
+	cp node_modules/bootstrap/js/dist/util.js $(DIST_STATIC)/js/
+	cp node_modules/bootstrap/js/dist/collapse.js $(DIST_STATIC)/js/
 	cat \
 		node_modules/jquery/dist/jquery.js \
 		node_modules/popper.js/dist/umd/popper.js \
-		node_modules/bootstrap/js/dist/util.js \
-		node_modules/bootstrap/js/dist/collapse.js \
+		node_modules/bootstrap/dist/js/bootstrap.js \
 		> $(TMP)/js/fournil.js
+	uglifyjs --compress --mangle -o $(TMP)/js/fournil.min.js $(TMP)/js/fournil.js
+	cp $(TMP)/js/fournil.min.js $(DIST_STATIC)/js
 	cat \
 		node_modules/leaflet/dist/leaflet.js \
 		$(STATIC)/js/fournil-map.js \
 		> $(TMP)/js/fournil-map.js
-	uglifyjs --compress --mangle -o $(TMP)/js/fournil.min.js $(TMP)/js/fournil.js
 	uglifyjs --compress --mangle -o $(TMP)/js/fournil-map.min.js $(TMP)/js/fournil-map.js
-	cp $(TMP)/js/fournil.min.js $(DIST_STATIC)/js
 	cp $(TMP)/js/fournil-map.min.js $(DIST_STATIC)/js
 
 fonts:
