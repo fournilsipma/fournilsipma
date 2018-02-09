@@ -16,15 +16,17 @@ css:
 	mkdir -p $(TMP)/css/
 	mkdir -p $(DIST_STATIC)/css
 	cat \
-		node_modules/bootstrap/dist/css/bootstrap.min.css \
-		node_modules/font-awesome/css/font-awesome.min.css \
+		node_modules/bootstrap/dist/css/bootstrap.css \
+		node_modules/font-awesome/css/font-awesome.css \
 		$(STATIC)/css/fournil.css \
 		> $(TMP)/css/fournil.css
 	cat \
 		node_modules/leaflet/dist/leaflet.css \
 		> $(TMP)/css/fournil-map.css
 	cp $(TMP)/css/fournil.css $(DIST_STATIC)/css
+	csso $(TMP)/css/fournil.css --output $(TMP)/css/fournil.min.css
 	cp $(TMP)/css/fournil-map.css $(DIST_STATIC)/css
+	csso $(TMP)/css/fournil-map.css --output $(TMP)/css/fournil-map.min.css
 
 js:
 	mkdir -p $(TMP)/js/
