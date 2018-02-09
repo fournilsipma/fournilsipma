@@ -28,13 +28,14 @@ js:
 	mkdir -p $(DIST_STATIC)/js
 	cat \
 		node_modules/leaflet/dist/leaflet.js \
-		node_modules/jquery/dist/jquery.min.js \
-		node_modules/popper.js/dist/umd/popper.min.js \
+		node_modules/jquery/dist/jquery.js \
+		node_modules/popper.js/dist/umd/popper.js \
 		node_modules/bootstrap/js/dist/util.js \
 		node_modules/bootstrap/js/dist/collapse.js \
 		$(STATIC)/js/* \
 		> $(TMP)/js/fournil.js
-	cp $(TMP)/js/fournil.js $(DIST_STATIC)/js
+	uglifyjs --compress --mangle -o $(TMP)/js/fournil.min.js $(TMP)/js/fournil.js
+	cp $(TMP)/js/fournil.min.js $(DIST_STATIC)/js
 
 fonts:
 	mkdir -p $(DIST_STATIC)/fonts
