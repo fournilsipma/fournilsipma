@@ -1,6 +1,7 @@
 ---
 title: "Commandes"
 menu: "main"
+type: "commandes"
 ---
 
 Vous pouvez passer vos commandes par téléphone ou par email, jusqu'à
