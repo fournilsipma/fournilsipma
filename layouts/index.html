@@ -1,5 +1,5 @@
 {{ define "head" }}
-<link href="{{ "css/leaflet.css" | relURL }}" rel="stylesheet" type="text/css">
+<link href="{{ "css/fournil-map.css" | relURL }}" rel="stylesheet" type="text/css">
 {{ end }}
 
 {{ define "footer" }}
@@ -16,11 +16,7 @@
     }
   });
 </script>
-<script src="{{ "js/leaflet.js" | relURL }}"></script>
-<script src="{{ "js/jquery.min.js" | relURL }}"></script>
-<script src="{{ "js/util.js" | relURL }}"></script>
-<script src="{{ "js/dropdown.js" | relURL }}"></script>
-<script src="{{ "js/fournil-map.js" | relURL }}"></script>
+<script src="{{ "js/fournil-map.min.js" | relURL }}"></script>
 {{ end }}
 
 {{ define "fournil-nav-classes" }} fournil-nologo-nav{{ end }}
