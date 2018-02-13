@@ -4,8 +4,4 @@ publish = "dist/public"
 command = "make"
 
 [build.environment]
-HUGO_VERSION = "0.26"
-
-[context.production]
-
-[context."deploy/netlify"]
+HUGO_VERSION = "0.35"

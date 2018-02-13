@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "8.9"
 install:
-  - wget https://github.com/gohugoio/hugo/releases/download/v0.31.1/hugo_0.31.1_Linux-64bit.deb
+  - wget https://github.com/gohugoio/hugo/releases/download/v0.35/hugo_0.35_Linux-64bit.deb
   - sudo dpkg -i hugo*.deb
 script:
   - make
