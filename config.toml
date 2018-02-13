@@ -3,6 +3,7 @@ languageCode = "fr-fr"
 title = "Fournil Sipma"
 staticDir = "dist/static"
 publishDir = "dist/public"
+DefaultContentLanguage = "fr"
 
 [params]
 email = "fournilsipma@gmail.com"
