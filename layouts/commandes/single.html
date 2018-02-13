@@ -1,34 +1,8 @@
 {{ define "main" }}
 {{ .Content }}
-<table class="table">
-  <thead>
-    <th scope="col">Désignation</th>
-    <th scope="col">Prix à la pièce</th>
-    <th scope="col">Prix au kg</th>
-  </thead>
-  <tbody>
-  {{ range $.Site.Data.produits }}
-    <tr>
-      <td colspan="3">
-        <span class="font-weight-bold">
-          {{ .name }}
-        </span>
-        <span class="font-italic">
-          {{ .description }}
-        </span>
-        <div>
-          {{ .note }}
-        </div>
-      </td>
-    </tr>
-    {{ range .variantes }}
-    <tr>
-      <td>{{ .name }}</td>
-      <td>{{ .prix }}€</td>
-      <td>{{ .prixkg }}€</td>
-    </tr>
-    {{ end }}
-  {{ end }}
-  </tbody>
-</table>
+<div id="fournil-shop-app"></div>
+{{ end }}
+
+{{ define "footer" }}
+<script src="{{ "js/fournil-shop-client.js" | relURL }}"></script>
 {{ end }}
