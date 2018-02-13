@@ -7,14 +7,12 @@ import Control.Monad.Eff.Exception  (EXCEPTION, throw)
 import CSS                          as CSS
 import Data.Argonaut.Encode         (encodeJson)
 import Data.Argonaut.Decode         (decodeJson)
-import Data.Array                   (index)
-import Data.Either                  (Either(..))
-import Data.Int                     (floor, toNumber, fromString)
-import Data.Maybe                   (Maybe(..), maybe)
+import Data.Array                   (mapWithIndex, modifyAt)
+import Data.Int                     (toNumber, fromString)
+import Data.Maybe                   (Maybe(..))
+import Data.Foldable                (foldl)
 import DOM                          (DOM)
 import DOM.Event.Event              (preventDefault)
-import DOM.Event.Types              (Event)
-import DOM.HTML.HTMLInputElement    (value)
 import Halogen                      as H
 import Halogen.HTML                 as HH
 import Halogen.HTML.Events          as HE
@@ -30,12 +28,12 @@ import Types
 fournilShopJson :: String
 fournilShopJson = "/fournil-produits.json"
 
-type State =
-  {
-  }
+type ProductState = { produit :: Product, pindex :: Int, quantity :: Int }
+
+type State = Array ProductState
 
 data Query a
-  = Initialize a
+  = SetQuantity Int String a
 
 type AppEffects eff = Aff (ajax :: AJAX, console :: CONSOLE, dom :: DOM, exception :: EXCEPTION | eff)
 
@@ -48,9 +46,7 @@ shopUI shop = H.component
   }
  where
   initialState :: State
-  initialState =
-    {
-    }
+  initialState = mapWithIndex (\i -> \p -> { produit : p, pindex: i, quantity : 0 }) (shop^_.produits)
 
   render :: State -> H.ComponentHTML Query
   render state = HH.table
@@ -78,32 +74,63 @@ shopUI shop = H.component
         [ HH.text "Total" ]
       ]
     , HH.tbody
-      [] $
-      map shopelement $ shop^_.produits
+      []
+      (map shopelement state <> [totalelement state])
     ]
    where
-    shopelement produit = HH.tr
+    shopelement st = HH.tr
       []
       [ HH.td
-        [ HP.colSpan 2 ]
+        []
         [ HH.span
           [ HP.class_ $ H.ClassName "font-weight-bold" ]
-          [ HH.text $ produit^_.name ]
+          [ HH.text $ st.produit^_.name ]
         , HH.div
           [ HP.class_ $ H.ClassName "font-italic" ]
-          [ HH.text $ produit^_.description ]
+          [ HH.text $ st.produit^_.description ]
         ]
       , HH.td
         []
-        [ HH.text $ show (produit^_.poids) <> "g" ]
+        [ HH.input
+          [ HP.value $ show st.quantity
+          , HP.type_ HP.InputNumber
+          , HP.class_ $ H.ClassName "form-control"
+          , HE.onValueInput (HE.input $ SetQuantity (st.pindex))
+          ]
+        ]
       , HH.td
         []
-        [ HH.text $ format (precision 2) (toNumber (produit^_.prix) / 100.0) <> "€" ]
+        [ HH.text $ show (st.produit^_.poids) <> "g" ]
       , HH.td
         []
+        [ HH.text $ showPrice (st.produit^_.prix) ]
+      , HH.td
         []
+        [ HH.text $ showPrice (st.quantity * st.produit^_.prix) ]
+      ]
+    totalelement st = HH.tr
+      []
+      [ HH.td
+        [ HP.class_ $ H.ClassName "font-weight-bold"
+        , HP.colSpan 4
+        ]
+        [ HH.text "TOTAL" ]
+      , HH.td
+        [ HP.class_ $ H.ClassName "font-weight-bold" ]
+        [ HH.text $ showPrice $ foldl (\t -> \s -> t + s.quantity * s.produit^_.prix) 0 st ]
       ]
 
+  showPrice :: Int -> String
+  showPrice p = format (precision 2) (toNumber p / 100.0) <> "€"
+
   eval :: Query ~> H.ComponentDSL State Query Unit (AppEffects eff)
-  eval = case _ of
-    Initialize next -> pure next
+  eval (SetQuantity i q next) = do
+    case fromString q of
+      Just q' -> do
+        H.modify $ \st -> case modifyAt i (\r -> r { quantity = q' }) st of
+            Nothing -> st
+              -- ^ TODO: add error message
+            Just s -> s
+        pure next
+      Nothing -> pure next
+        -- ^ TODO: add error message
