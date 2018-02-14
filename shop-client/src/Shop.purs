@@ -30,10 +30,10 @@ fournilShopJson = "/fournil-produits.json"
 
 type ProductState = { produit :: Product, pindex :: Int, quantity :: Int }
 
-type State = Array ProductState
+type State = { produits :: Array ProductState, total :: Int }
 
 data Query a
-  = SetQuantity Int String a
+  = SetQuantity ProductState String a
 
 type AppEffects eff = Aff (ajax :: AJAX, console :: CONSOLE, dom :: DOM, exception :: EXCEPTION | eff)
 
@@ -46,67 +46,73 @@ shopUI shop = H.component
   }
  where
   initialState :: State
-  initialState = mapWithIndex (\i -> \p -> { produit : p, pindex: i, quantity : 0 }) (shop^_.produits)
+  initialState =
+    { produits : mapWithIndex (\i -> \p -> { produit : p, pindex: i, quantity : 0 }) (shop^_.produits)
+    , total : 0
+    }
 
   render :: State -> H.ComponentHTML Query
-  render state = HH.table
-    [ HP.classes $ H.ClassName <$>
-      [ "fournil-shop"
-      , "table"
+  render state = HH.div
+    [] $
+    [ HH.table
+      [ HP.classes $ H.ClassName <$>
+        [ "fournil-shop"
+        , "table"
+        ]
       ]
-    ]
-    [ HH.thead
-      []
-      [ HH.th
+      [ HH.thead
         []
-        [ HH.text "Désignation" ]
-      , HH.th
+        [ HH.th
+          []
+          [ HH.text "Désignation" ]
+        , HH.th
+          []
+          [ HH.text "Nombre" ]
+        , HH.th
+          []
+          [ HH.text "Poids" ]
+        , HH.th
+          []
+          [ HH.text "Prix du pain" ]
+        , HH.th
+          []
+          [ HH.text "Total" ]
+        ]
+      , HH.tbody
         []
-        [ HH.text "Nombre" ]
-      , HH.th
-        []
-        [ HH.text "Poids" ]
-      , HH.th
-        []
-        [ HH.text "Prix du pain" ]
-      , HH.th
-        []
-        [ HH.text "Total" ]
+        (map shopelement (state.produits) <> [totalelement state])
       ]
-    , HH.tbody
-      []
-      (map shopelement state <> [totalelement state])
     ]
    where
-    shopelement st = HH.tr
+    shopelement ps = HH.tr
       []
       [ HH.td
         []
         [ HH.span
           [ HP.class_ $ H.ClassName "font-weight-bold" ]
-          [ HH.text $ st.produit^_.name ]
+          [ HH.text $ ps.produit^_.name ]
         , HH.div
           [ HP.class_ $ H.ClassName "font-italic" ]
-          [ HH.text $ st.produit^_.description ]
+          [ HH.text $ ps.produit^_.description ]
         ]
       , HH.td
         []
         [ HH.input
-          [ HP.value $ show st.quantity
+          [ HP.value $ show ps.quantity
           , HP.type_ HP.InputNumber
           , HP.class_ $ H.ClassName "form-control"
-          , HE.onValueInput (HE.input $ SetQuantity (st.pindex))
+          , HE.onValueInput (HE.input $ SetQuantity ps)
           ]
         ]
       , HH.td
         []
-        [ HH.text $ show (st.produit^_.poids) <> "g" ]
+        [ HH.text $ show (ps.produit^_.poids) <> "g" ]
       , HH.td
         []
-        [ HH.text $ showPrice (st.produit^_.prix) ]
+        [ HH.text $ showPrice (ps.produit^_.prix) ]
       , HH.td
         []
-        [ HH.text $ showPrice (st.quantity * st.produit^_.prix) ]
+        [ HH.text $ showPrice (ps.quantity * ps.produit^_.prix) ]
       ]
     totalelement st = HH.tr
       []
@@ -114,23 +120,33 @@ shopUI shop = H.component
         [ HP.class_ $ H.ClassName "font-weight-bold"
         , HP.colSpan 4
         ]
-        [ HH.text "TOTAL" ]
+        [ HH.div
+          []
+          [ HH.text "TOTAL" ]
+        , HH.a
+          [ HP.classes $ H.ClassName <$>
+            [ "btn", "btn-success" ] <> if st.total == 0 then ["disabled"] else []
+            -- ^ TODO
+          , HP.href "#fournil-commande"
+          ]
+          [ HH.text "Commander" ]
+        ]
       , HH.td
         [ HP.class_ $ H.ClassName "font-weight-bold" ]
-        [ HH.text $ showPrice $ foldl (\t -> \s -> t + s.quantity * s.produit^_.prix) 0 st ]
+        [ HH.text $ showPrice st.total ]
       ]
 
   showPrice :: Int -> String
   showPrice p = format (precision 2) (toNumber p / 100.0) <> "€"
 
   eval :: Query ~> H.ComponentDSL State Query Unit (AppEffects eff)
-  eval (SetQuantity i q next) = do
+  eval (SetQuantity ps q next) = do
     case fromString q of
       Just q' -> do
-        H.modify $ \st -> case modifyAt i (\r -> r { quantity = q' }) st of
+        H.modify $ \st -> case modifyAt (ps.pindex) (\r -> r { quantity = q' }) (st.produits) of
             Nothing -> st
               -- ^ TODO: add error message
-            Just s -> s
+            Just ps -> st { produits = ps, total = foldl (\t -> \ps -> t + ps.quantity * ps.produit^_.prix) 0 ps }
         pure next
       Nothing -> pure next
         -- ^ TODO: add error message
