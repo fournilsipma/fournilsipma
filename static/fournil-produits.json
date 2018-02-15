@@ -1,51 +1,51 @@
 { "produits":
   [
-    { "name": "Semi complet T80"
+    { "nom": "Semi complet T80"
     , "description": ""
     , "poids": 1000
     , "prix": 520
     }
-  , { "name": "Pavot T80"
+  , { "nom": "Pavot T80"
     , "description": ""
     , "poids": 800
     , "prix": 600
     }
-  , { "name": "Tournesol T80"
+  , { "nom": "Tournesol T80"
     , "description": ""
     , "poids": 800
     , "prix": 550
     }
-  , { "name": "Noisette Raisin T80"
+  , { "nom": "Noisette Raisin T80"
     , "description": ""
     , "poids": 800
     , "prix": 740
     }
-  , { "name": "Lin Courge T80"
+  , { "nom": "Lin Courge T80"
     , "description": ""
     , "poids": 800
     , "prix": 600
     }
-  , { "name": "Complet T80"
+  , { "nom": "Complet T80"
     , "description": ""
     , "poids": 1000
     , "prix": 550
     }
-  , { "name": "Seigle T80"
+  , { "nom": "Seigle T80"
     , "description": ""
     , "poids": 1000
     , "prix": 590
     }
-  , { "name": "Engrain T80"
+  , { "nom": "Engrain T80"
     , "description": ""
     , "poids": 800
     , "prix": 790
     }
-  , { "name": "Grand Épeautre T80"
+  , { "nom": "Grand Épeautre T80"
     , "description": ""
     , "poids": 1000
     , "prix": 700
     }
-  , { "name": "Méteil T80"
+  , { "nom": "Méteil T80"
     , "description": "moitié seigle et moitié blé"
     , "poids": 1000
     , "prix": 570
