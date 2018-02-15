@@ -83,3 +83,39 @@ address span {
   height: 60px;
   display: inline-block;
 }
+
+.fournil-spin {
+  min-width: 30px;
+  min-height: 30px;
+}
+
+.fournil-spin:before {
+  content: 'Loading…';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: 10px;
+}
+
+.fournil-spin:not(:required):before {
+  content: '';
+  border-radius: 50%;
+  border: 2px solid #bbb;
+  border-top-color: #fff;
+  animation: fournil-spin 1s linear infinite;
+}
+
+.fournil-spin {
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+@keyframes fournil-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
