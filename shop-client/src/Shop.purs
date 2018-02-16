@@ -8,9 +8,15 @@ import CSS                          as CSS
 import Data.Argonaut.Encode         (encodeJson)
 import Data.Argonaut.Decode         (decodeJson)
 import Data.Array                   (mapWithIndex, modifyAt)
+import Data.DateTime                (DateTime, adjust)
+import Data.Time.Duration           (Days(..))
+import Data.DateTime.Locale         (LocalValue(..), LocalDateTime)
+import Data.Interval.Duration       (Duration)
 import Data.Either                  (Either(..))
+import Data.Formatter.DateTime      as D
 import Data.Int                     (toNumber, fromString)
-import Data.Maybe                   (Maybe(..))
+import Data.List                    (List(Nil), (:))
+import Data.Maybe                   (Maybe(..), maybe)
 import Data.Foldable                (foldl)
 import DOM                          (DOM)
 import DOM.Classy.HTMLElement       (fromHTMLElement)
@@ -19,6 +25,7 @@ import DOM.Event.Types              (Event)
 import DOM.HTML.HTMLInputElement    (value)
 import Halogen                      as H
 import Halogen.HTML                 as HH
+import Halogen.HTML.Core            (PropName(..))
 import Halogen.HTML.Events          as HE
 import Halogen.HTML.Properties      as HP
 import Halogen.HTML.Properties.ARIA as HPA
@@ -31,6 +38,9 @@ import Types
 
 fournilShopJson :: String
 fournilShopJson = "/fournil-produits.json"
+
+offset :: Days
+offset = Days 2.0
 
 serverUrl :: String
 serverUrl = "http://127.0.0.1:8080"
@@ -53,8 +63,8 @@ data Query a
 
 type AppEffects eff = Aff (ajax :: AJAX, console :: CONSOLE, dom :: DOM, exception :: EXCEPTION | eff)
 
-shopUI :: forall eff. Shop -> H.Component HH.HTML Query Unit Unit (AppEffects eff)
-shopUI shop = H.component
+shopUI :: forall eff. Shop -> LocalDateTime -> H.Component HH.HTML Query Unit Unit (AppEffects eff)
+shopUI shop date = H.component
   { initialState : const initialState
   , render
   , eval
@@ -110,9 +120,11 @@ shopUI shop = H.component
       , HP.action "#"
       , HE.onSubmit (HE.input SubmitForm)
       ]
-      [ formdivelement "fournil-form-nom" "Nom" "" HP.InputText
-      , formdivelement "fournil-form-email" "Email" "moi@example.com" HP.InputEmail
-      , formdivelement "fournil-form-tel" "Téléphone" "02 32 11 11 11" HP.InputTel
+      [ formdivelement "fournil-form-nom" "Nom" Nothing HP.InputText []
+      , formdivelement "fournil-form-email" "Email" (Just "moi@example.com") HP.InputEmail []
+      , formdivelement "fournil-form-tel" "Téléphone" (Just "02 32 11 11 11") HP.InputTel []
+      , formdivelement "fournil-form-date" "Date" Nothing HP.InputDate $
+        maybe [] (\v -> [ HP.value v, HP.prop (PropName "min") v ]) mlocaldate
       , HH.div
         [ HP.class_ $ H.ClassName "form-group" ]
         [ HH.div
@@ -131,13 +143,28 @@ shopUI shop = H.component
         ]
       ]
 
+    simpledate (LocalValue _ sdate) = sdate
+
+    formatter
+      = D.YearFull
+      : D.Placeholder "-"
+      : D.MonthTwoDigits
+      : D.Placeholder "-"
+      : D.DayOfMonthTwoDigits
+      : Nil
+
+    mdatewithoffset :: Maybe DateTime
+    mdatewithoffset = adjust offset (simpledate date)
+
+    mlocaldate = D.format formatter <$> mdatewithoffset
+
     loaderelements =
       [ HH.span
         [ HP.class_ $ H.ClassName "fournil-spin" ]
         []
       ]
 
-    formdivelement id desc placeholder inputtype = HH.div
+    formdivelement id desc mplaceholder inputtype attributes = HH.div
       [ HP.classes $ H.ClassName <$>
         [ "form-group"
         , "row"
@@ -153,14 +180,15 @@ shopUI shop = H.component
       , HH.div
         [ HP.classes $ H.ClassName <$> [ "col-sm-10" ]
         ]
-        [ HH.input
+        [ HH.input $
           [ HP.type_ inputtype
           , HP.class_ $ H.ClassName "form-control"
-          , HP.placeholder placeholder
           , HP.required true
           , HP.id_ id
           , HP.ref (H.RefLabel id)
           ]
+          <> maybe [] (\p -> [ HP.placeholder p ]) mplaceholder
+          <> attributes
         ]
       ]
 
@@ -231,10 +259,12 @@ shopUI shop = H.component
      name <- getRefValue "fournil-form-nom"
      email <- getRefValue "fournil-form-email"
      phone <- getRefValue "fournil-form-tel"
+     date <- getRefValue "fournil-form-date"
      let formdata = ChargeForm
            { "name"     : name
            , "email"    : email
            , "phone"    : phone
+           , "date"     : date
            , "articles" : map (\ps -> Article { product : ps.product, quantity : ps.quantity }) state.produits
            }
      res <- H.liftAff $ post (serverUrl <> chargeUrl) (encodeJson formdata)

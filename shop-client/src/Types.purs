@@ -112,6 +112,8 @@ newtype ChargeForm = ChargeForm
   { name     :: String
   , email    :: String
   , phone    :: String
+  , date     :: String
+  -- ^ TODO: use Date type
   , articles :: Array Article
   }
 
