@@ -5,10 +5,8 @@
     "depends": [
         "formatters",
         "now",
-        "argonaut-generic",
         "dom-classy",
         "psci-support",
-        "css",
         "halogen-css",
         "foreign-generic",
         "halogen",

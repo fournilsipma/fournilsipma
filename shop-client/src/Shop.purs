@@ -4,7 +4,6 @@ import Prelude
 import Control.Monad.Aff            (Aff)
 import Control.Monad.Eff            (Eff, kind Effect)
 import Control.Monad.Eff.Exception  (EXCEPTION, throw)
-import CSS                          as CSS
 import Data.Argonaut.Encode         (encodeJson)
 import Data.Argonaut.Decode         (decodeJson)
 import Data.Array                   (mapWithIndex, modifyAt)
