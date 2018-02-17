@@ -254,7 +254,6 @@ shopUI shop date = H.component
      H.liftEff $ preventDefault event
      state <- H.get
      H.modify (_ { processing = true })
-     -- TODO
      name <- getRefValue "fournil-form-nom"
      email <- getRefValue "fournil-form-email"
      phone <- getRefValue "fournil-form-tel"
@@ -270,6 +269,8 @@ shopUI shop date = H.component
      case decodeJson (res.response) :: Either String ChargeResponse of
        Left err -> H.modify (_ { processing = false, response = ResponseDecodeError err })
        Right cr -> H.modify (_ { processing = false, response = ResponseSuccess cr })
+       -- TODO: show responses
+       -- TODO: reinit products quantities
      pure next
 
   getRefValue label = do
