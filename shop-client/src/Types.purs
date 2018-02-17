@@ -144,6 +144,8 @@ instance encodeJsonChargeForm :: EncodeJson ChargeForm where
 newtype ChargeResponse = ChargeResponse
   { chargeid     :: String
   , chargeamount :: String
+  , chargeemail  :: String
+  , chargedate   :: String
   }
 
 derive instance newtypeChargeResponse :: Newtype ChargeResponse _
@@ -167,9 +169,13 @@ instance decodeJsonChargeResponse :: DecodeJson ChargeResponse where
     obj <- decodeJson x
     chargeid <- obj .? "chargeid"
     chargeamount <- obj .? "chargeamount"
+    chargeemail <- obj .? "chargeemail"
+    chargedate <- obj .? "chargedate"
     pure $ ChargeResponse
       { chargeid : chargeid
       , chargeamount : chargeamount
+      , chargeemail : chargeemail
+      , chargedate : chargedate
       }
 
 data ChargeResponseType
