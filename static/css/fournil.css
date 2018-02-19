@@ -13,14 +13,25 @@ body {
 .banner {
 }
 
-.header {
+#fournil-header {
+  position: relative;
+  text-align: center;
+  min-height: 400px;
   display: flex;
   align-items: center;
-  background: #f4f4f4 url(../img/farine.jpg) top center;
+}
+
+#fournil-header:after {
+  content: "";
+  position: absolute;
+  background-image: url(../img/pains.jpg);
+  top: 0;
+  left: 0;
+  opacity: 0.4;
   background-size: cover;
-  text-align: center;
   width: 100%;
-  min-height: 400px
+  height: 100%;
+  z-index: -1;
 }
 
 .fournil-logo {
