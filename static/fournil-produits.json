@@ -52,6 +52,6 @@
     }
   ]
 , "delai": 2
-, "serverUrl": "http://127.0.0.1:8080"
+, "serverUrl": "https://api.fournilsipma.fr"
 , "chargeUrl": "/charge"
 }
