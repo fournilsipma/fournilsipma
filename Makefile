@@ -15,10 +15,11 @@ tmp:
 css:
 	mkdir -p $(TMP)/css/
 	mkdir -p $(DIST_STATIC)/css
+	sass $(STATIC)/scss/fournil.scss > $(TMP)/css/fournil-base.css
 	cat \
 		node_modules/bootstrap/dist/css/bootstrap.css \
 		node_modules/font-awesome/css/font-awesome.css \
-		$(STATIC)/css/fournil.css \
+		$(TMP)/css/fournil-base.css \
 		> $(TMP)/css/fournil.css
 	csso $(TMP)/css/fournil.css --output $(TMP)/css/fournil.min.css
 	cp $(TMP)/css/fournil.min.css $(DIST_STATIC)/css/
