@@ -10,7 +10,6 @@ import Data.Array                   (mapWithIndex, modifyAt)
 import Data.DateTime                (DateTime, adjust)
 import Data.Time.Duration           (Days(..))
 import Data.DateTime.Locale         (LocalValue(..), LocalDateTime)
-import Data.Interval.Duration       (Duration)
 import Data.Either                  (Either(..))
 import Data.Formatter.DateTime      as D
 import Data.Int                     (toNumber, fromString)
@@ -37,15 +36,6 @@ import Types
 
 fournilShopJson :: String
 fournilShopJson = "/fournil-produits.json"
-
-offset :: Days
-offset = Days 2.0
-
-serverUrl :: String
-serverUrl = "http://127.0.0.1:8080"
-
-chargeUrl :: String
-chargeUrl = "/charge"
 
 type ProductState = { product :: Product, pindex :: Int, quantity :: Int }
 
@@ -153,7 +143,7 @@ shopUI shop date = H.component
       : Nil
 
     mdatewithoffset :: Maybe DateTime
-    mdatewithoffset = adjust offset (simpledate date)
+    mdatewithoffset = adjust (Days $ toNumber $ shop^_.delai) (simpledate date)
 
     mlocaldate = D.format formatter <$> mdatewithoffset
 
@@ -265,7 +255,7 @@ shopUI shop date = H.component
            , "date"     : date
            , "articles" : map (\ps -> Article { product : ps.product, quantity : ps.quantity }) state.produits
            }
-     res <- H.liftAff $ post (serverUrl <> chargeUrl) (encodeJson formdata)
+     res <- H.liftAff $ post (shop^_.serverUrl <> shop^_.chargeUrl) (encodeJson formdata)
      case decodeJson (res.response) :: Either String ChargeResponse of
        Left err -> H.modify (_ { processing = false, response = ResponseDecodeError err })
        Right cr -> H.modify (_ { processing = false, response = ResponseSuccess cr })
