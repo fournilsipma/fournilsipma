@@ -43,12 +43,13 @@ type State =
   { produits :: Array ProductState
   , total :: Int
   , processing :: Boolean
-  , response :: ChargeResponseType
+  , response :: Maybe ChargeResponseType
   }
 
 data Query a
   = SetQuantity ProductState String a
   | SubmitForm Event a
+  | DiscardResponse a
 
 type AppEffects eff = Aff (ajax :: AJAX, console :: CONSOLE, dom :: DOM, exception :: EXCEPTION | eff)
 
@@ -65,12 +66,13 @@ shopUI shop date = H.component
     { produits : mapWithIndex (\i -> \p -> { product : p, pindex: i, quantity : 0 }) (shop^_.produits)
     , total : 0
     , processing : false
-    , response : NoResponse
+    , response : Nothing
     }
 
   render :: State -> H.ComponentHTML Query
   render state = HH.div
     [] $
+    maybe [] alertdiv state.response <>
     [ HH.table
       [ HP.classes $ H.ClassName <$>
         [ "fournil-shop"
@@ -101,6 +103,39 @@ shopUI shop date = H.component
       ]
     ] <> [contactelement state]
    where
+    alertdiv res =
+      [ HH.div
+        [ HP.classes $ H.ClassName <$>
+          [ "alert"
+          , "alert-dismissible"
+          , "fade"
+          , "show"
+          , case res of
+              ResponseDecodeError _ -> "alert-danger"
+              ResponseSuccess _ -> "alert-success"
+          ]
+        ] $
+        ( case res of
+            ResponseDecodeError err -> [ HH.text $ "Erreur: " <> err ]
+            ResponseSuccess cr ->
+              [ HH.div
+                []
+                [ HH.text $ "Votre commande est bien enregistrée. Un email de confirmation a été envoyé à l'adresse " <> cr^_.chargeemail ]
+              , HH.div
+                []
+                [ HH.text $ "Référence de la commande : " <> cr^_.chargeid ]
+              ]
+        ) <>
+        [ HH.button
+          [ HP.class_ $ H.ClassName "close"
+          , HP.type_ HP.ButtonButton
+          , HP.attr (HH.AttrName "data-dismiss") "alert"
+          , HE.onClick $ HE.input_ DiscardResponse
+          ]
+          [ HH.text "×" ]
+        ]
+      ]
+
     contactelement st = HH.form
       [ HP.classes $ H.ClassName <$>
           [ "fournil-form"
@@ -257,11 +292,13 @@ shopUI shop date = H.component
            }
      res <- H.liftAff $ post (shop^_.serverUrl <> shop^_.chargeUrl) (encodeJson formdata)
      case decodeJson (res.response) :: Either String ChargeResponse of
-       Left err -> H.modify (_ { processing = false, response = ResponseDecodeError err })
-       Right cr -> H.modify (_ { processing = false, response = ResponseSuccess cr })
-       -- TODO: show responses
+       Left err -> H.modify (_ { processing = false, response = Just $ ResponseDecodeError err })
+       Right cr -> H.modify (_ { processing = false, response = Just $ ResponseSuccess cr })
        -- TODO: reinit products quantities
      pure next
+  eval (DiscardResponse next) = do
+    H.modify (_ { response = Nothing })
+    pure next
 
   getRefValue label = do
     me <- H.getHTMLElementRef (H.RefLabel label)

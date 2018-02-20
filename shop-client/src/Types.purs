@@ -182,6 +182,5 @@ instance decodeJsonChargeResponse :: DecodeJson ChargeResponse where
       }
 
 data ChargeResponseType
-  = NoResponse
-  | ResponseDecodeError String
+  = ResponseDecodeError String
   | ResponseSuccess ChargeResponse
