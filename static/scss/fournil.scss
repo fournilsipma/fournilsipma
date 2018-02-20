@@ -1,4 +1,20 @@
+/* alegreya-sans-regular - latin */
+@font-face {
+  font-family: 'Alegreya Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/alegreya-sans-v8-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Alegreya Sans Regular'), local('AlegreyaSans-Regular'),
+       url('../fonts/alegreya-sans-v8-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/alegreya-sans-v8-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/alegreya-sans-v8-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/alegreya-sans-v8-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/alegreya-sans-v8-latin-regular.svg#AlegreyaSans') format('svg'); /* Legacy iOS */
+}
+
 html, body {
+  font-family: 'Alegreya Sans';
+  font-size: 20px;
 }
 
 body {
@@ -76,7 +92,7 @@ address span {
   width: 150px;
 }
 
-.fournil-nologo-nav .navbar-brand img {
+.fournil-nologo-nav .navbar-brand {
   display: none;
 }
 
