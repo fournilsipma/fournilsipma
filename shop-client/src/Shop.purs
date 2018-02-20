@@ -122,7 +122,7 @@ shopUI shop date = H.component
       [ formdivelement "fournil-form-nom" "Nom" Nothing HP.InputText []
       , formdivelement "fournil-form-email" "Email" (Just "moi@example.com") HP.InputEmail []
       , formdivelement "fournil-form-tel" "Téléphone" (Just "02 32 11 11 11") HP.InputTel []
-      , formdivelement "fournil-form-date" "Date" Nothing HP.InputDate $
+      , formdivelement "fournil-form-date" "Date d'enlèvement" Nothing HP.InputDate $
         maybe [] (\v -> [ HP.value v, HP.prop (PropName "min") v ]) mlocaldate
       , HH.div
         [ HP.class_ $ H.ClassName "form-group" ]
