@@ -94,7 +94,7 @@ shopUI shop date = H.component
           [ HH.text "Désignation" ]
         , HH.th
           []
-          [ HH.text "Nombre" ]
+          [ HH.text "Quantité" ]
         , HH.th
           []
           [ HH.text "Poids" ]
