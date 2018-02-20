@@ -51,4 +51,7 @@
     , "prix": 570
     }
   ]
+, "delai": 2
+, "serverUrl": "http://127.0.0.1:8080"
+, "chargeUrl": "/charge"
 }
