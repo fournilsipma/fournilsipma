@@ -32,9 +32,12 @@
       </div>
     </nav>
     {{ end }}
-    <div class="container pt-4">
+    <div class="container pt-4 pb-2">
     {{ block "main" . }}
     {{ end }}
+    </div>
+    <div class="fournil-footer pt-1 pb-1">
+    {{ partial "legal.html" . }}
     </div>
     <script src="{{ "js/fournil.min.js" | relURL }}"></script>
     {{ block "footer" . }}
