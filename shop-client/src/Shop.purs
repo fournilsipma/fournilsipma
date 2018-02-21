@@ -7,11 +7,7 @@ import Control.Monad.Eff.Exception  (EXCEPTION, throw)
 import Data.Argonaut.Encode         (encodeJson)
 import Data.Argonaut.Decode         (decodeJson)
 import Data.Array                   (mapWithIndex, modifyAt)
-import Data.DateTime                (DateTime, adjust)
-import Data.Time.Duration           (Days(..))
-import Data.DateTime.Locale         (LocalValue(..), LocalDateTime)
 import Data.Either                  (Either(..))
-import Data.Formatter.DateTime      as D
 import Data.Int                     (toNumber, fromString)
 import Data.List                    (List(Nil), (:))
 import Data.Maybe                   (Maybe(..), maybe)
@@ -58,8 +54,8 @@ data Query a
 
 type AppEffects eff = Aff (ajax :: AJAX, console :: CONSOLE, dom :: DOM, exception :: EXCEPTION, pikaday :: PIKADAY | eff)
 
-shopUI :: forall eff. Shop -> LocalDateTime -> H.Component HH.HTML Query Unit Unit (AppEffects eff)
-shopUI shop date = H.lifecycleComponent
+shopUI :: forall eff. Shop -> H.Component HH.HTML Query Unit Unit (AppEffects eff)
+shopUI shop = H.lifecycleComponent
   { initialState : const initialState
   , render
   , eval
@@ -154,8 +150,7 @@ shopUI shop date = H.lifecycleComponent
       [ formdivelement "fournil-form-nom" "Nom" Nothing HP.InputText []
       , formdivelement "fournil-form-email" "Email" (Just "moi@example.com") HP.InputEmail []
       , formdivelement "fournil-form-tel" "Téléphone" (Just "02 32 11 11 11") HP.InputTel []
-      , formdivelement "fournil-form-date" "Date d'enlèvement" Nothing HP.InputText $
-        maybe [] (\v -> [ HP.value v, HP.prop (PropName "min") v ]) mlocaldate
+      , formdivelement "fournil-form-date" "Date d'enlèvement" Nothing HP.InputText []
       , HH.div
         [ HP.class_ $ H.ClassName "form-group" ]
         [ HH.div
@@ -173,21 +168,6 @@ shopUI shop date = H.lifecycleComponent
           ]
         ]
       ]
-
-    simpledate (LocalValue _ sdate) = sdate
-
-    formatter
-      = D.YearFull
-      : D.Placeholder "-"
-      : D.MonthTwoDigits
-      : D.Placeholder "-"
-      : D.DayOfMonthTwoDigits
-      : Nil
-
-    mdatewithoffset :: Maybe DateTime
-    mdatewithoffset = adjust (Days $ toNumber $ shop^_.delai) (simpledate date)
-
-    mlocaldate = D.format formatter <$> mdatewithoffset
 
     loaderelements =
       [ HH.span

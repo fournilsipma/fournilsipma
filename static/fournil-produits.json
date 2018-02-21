@@ -51,7 +51,6 @@
     , "prix": 570
     }
   ]
-, "delai": 2
 , "serverUrl": "https://api.fournilsipma.fr"
 , "chargeUrl": "/charge"
 }
