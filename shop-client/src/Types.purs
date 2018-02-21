@@ -59,7 +59,6 @@ instance encodeJsonProduct :: EncodeJson Product where
 -- Shop
 newtype Shop = Shop
   { produits  :: Array Product
-  , delai     :: Int
   , serverUrl :: String
   , chargeUrl :: String
   }
