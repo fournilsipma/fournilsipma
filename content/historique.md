@@ -3,8 +3,6 @@ title: "Historique"
 menu: "main"
 ---
 
-# Historique
-
 Installés sur la ferme familiale depuis 1998, nous avons engagés une
 conversion en agriculture biologique des parcelles de terre les plus
 fertiles (40 ha) depuis 2015.
