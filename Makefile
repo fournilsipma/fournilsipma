@@ -62,10 +62,17 @@ produits:
 shopclient:
 	cd shop-client && make
 	cat \
+		node_modules/moment/moment.js \
+		node_modules/pikaday/pikaday.js \
 		shop-client/dist/fournil-shop-client.js \
 		> $(TMP)/js/fournil-shop-client.js
 	uglifyjs --compress --mangle -o $(TMP)/js/fournil-shop-client.min.js $(TMP)/js/fournil-shop-client.js
 	cp $(TMP)/js/fournil-shop-client.min.js $(DIST_STATIC)/js
+	cat \
+		node_modules/pikaday/css/pikaday.css \
+		> $(TMP)/css/fournil-shop-client.css
+	csso $(TMP)/css/fournil-shop-client.css --output $(TMP)/css/fournil-shop-client.min.css
+	cp $(TMP)/css/fournil-shop-client.min.css $(DIST_STATIC)/css/
 
 site:
 	hugo

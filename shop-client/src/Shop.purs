@@ -34,6 +34,10 @@ import Text.Format                  (format, precision)
 import Types
 
 
+foreign import data PIKADAY :: Effect
+foreign import data Pikaday :: Type
+foreign import pikadayNew :: forall eff. String -> Eff (pikaday :: PIKADAY | eff) Pikaday
+
 fournilShopJson :: String
 fournilShopJson = "/fournil-produits.json"
 
@@ -50,14 +54,17 @@ data Query a
   = SetQuantity ProductState String a
   | SubmitForm Event a
   | DiscardResponse a
+  | Initialize a
 
-type AppEffects eff = Aff (ajax :: AJAX, console :: CONSOLE, dom :: DOM, exception :: EXCEPTION | eff)
+type AppEffects eff = Aff (ajax :: AJAX, console :: CONSOLE, dom :: DOM, exception :: EXCEPTION, pikaday :: PIKADAY | eff)
 
 shopUI :: forall eff. Shop -> LocalDateTime -> H.Component HH.HTML Query Unit Unit (AppEffects eff)
-shopUI shop date = H.component
+shopUI shop date = H.lifecycleComponent
   { initialState : const initialState
   , render
   , eval
+  , initializer  : Just (H.action Initialize)
+  , finalizer    : Nothing
   , receiver     : const Nothing
   }
  where
@@ -147,7 +154,7 @@ shopUI shop date = H.component
       [ formdivelement "fournil-form-nom" "Nom" Nothing HP.InputText []
       , formdivelement "fournil-form-email" "Email" (Just "moi@example.com") HP.InputEmail []
       , formdivelement "fournil-form-tel" "Téléphone" (Just "02 32 11 11 11") HP.InputTel []
-      , formdivelement "fournil-form-date" "Date d'enlèvement" Nothing HP.InputDate $
+      , formdivelement "fournil-form-date" "Date d'enlèvement" Nothing HP.InputText $
         maybe [] (\v -> [ HP.value v, HP.prop (PropName "min") v ]) mlocaldate
       , HH.div
         [ HP.class_ $ H.ClassName "form-group" ]
@@ -298,6 +305,9 @@ shopUI shop date = H.component
      pure next
   eval (DiscardResponse next) = do
     H.modify (_ { response = Nothing })
+    pure next
+  eval (Initialize next) = do
+    _ <- H.liftEff $ pikadayNew "fournil-form-date"
     pure next
 
   getRefValue label = do
