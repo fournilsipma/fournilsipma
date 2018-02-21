@@ -61,7 +61,11 @@ produits:
 
 shopclient:
 	cd shop-client && make
-	cp shop-client/dist/fournil-shop-client.js $(DIST_STATIC)/js/
+	cat \
+		shop-client/dist/fournil-shop-client.js \
+		> $(TMP)/js/fournil-shop-client.js
+	uglifyjs --compress --mangle -o $(TMP)/js/fournil-shop-client.min.js $(TMP)/js/fournil-shop-client.js
+	cp $(TMP)/js/fournil-shop-client.min.js $(DIST_STATIC)/js
 
 site:
 	hugo
