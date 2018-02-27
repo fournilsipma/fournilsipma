@@ -18,7 +18,7 @@ import Network.HTTP.Affjax         (AJAX, get)
 import Data.Foreign.Generic        (genericDecodeJSON)
 
 
-main :: Eff (HA.HalogenEffects ( console :: CONSOLE, ajax :: AJAX, pikaday :: S.PIKADAY )) Unit
+main :: Eff (HA.HalogenEffects ( console :: CONSOLE, ajax :: AJAX, pikaday :: S.PIKADAY, stripe :: S.STRIPE )) Unit
 main = HA.runHalogenAff do
     HA.awaitLoad
     res <- get S.fournilShopJson
