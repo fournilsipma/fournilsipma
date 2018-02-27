@@ -4,6 +4,8 @@ import Prelude
 import Control.Monad.Aff            (Aff)
 import Control.Monad.Eff            (Eff, kind Effect)
 import Control.Monad.Eff.Exception  (EXCEPTION, throw)
+import Control.Promise              (Promise, toAff)
+import CSS                          as CSS
 import Data.Argonaut.Encode         (encodeJson)
 import Data.Argonaut.Decode         (decodeJson)
 import Data.Array                   (mapWithIndex, modifyAt)
@@ -34,6 +36,17 @@ foreign import data PIKADAY :: Effect
 foreign import data Pikaday :: Type
 foreign import pikadayNew :: forall eff. String -> Eff (pikaday :: PIKADAY | eff) Pikaday
 
+foreign import data STRIPE :: Effect
+foreign import data Stripe :: Type
+foreign import data Elements :: Type
+foreign import data Card :: Type
+foreign import stripeStripe :: forall eff. APIKey -> Eff (stripe :: STRIPE | eff) Stripe
+foreign import stripeElements :: forall eff. Stripe -> Eff (stripe :: STRIPE | eff) Elements
+foreign import stripeCard :: forall eff. Elements -> Eff (stripe :: STRIPE | eff) Card
+foreign import stripeCardMount :: forall eff. Card -> String -> Eff (stripe :: STRIPE | eff) Unit
+foreign import stripeCreateToken :: Stripe -> Card -> Promise Unit
+type APIKey = String
+
 fournilShopJson :: String
 fournilShopJson = "/fournil-produits.json"
 
@@ -44,6 +57,8 @@ type State =
   , total :: Int
   , processing :: Boolean
   , response :: Maybe ChargeResponseType
+  , stripe :: Maybe Stripe
+  , card :: Maybe Card
   }
 
 data Query a
@@ -52,7 +67,7 @@ data Query a
   | DiscardResponse a
   | Initialize a
 
-type AppEffects eff = Aff (ajax :: AJAX, console :: CONSOLE, dom :: DOM, exception :: EXCEPTION, pikaday :: PIKADAY | eff)
+type AppEffects eff = Aff (ajax :: AJAX, console :: CONSOLE, dom :: DOM, exception :: EXCEPTION, pikaday :: PIKADAY, stripe :: STRIPE | eff)
 
 shopUI :: forall eff. Shop -> H.Component HH.HTML Query Unit Unit (AppEffects eff)
 shopUI shop = H.lifecycleComponent
@@ -70,6 +85,8 @@ shopUI shop = H.lifecycleComponent
     , total : 0
     , processing : false
     , response : Nothing
+    , stripe : Nothing
+    , card : Nothing
     }
 
   render :: State -> H.ComponentHTML Query
@@ -152,6 +169,42 @@ shopUI shop = H.lifecycleComponent
       , formdivelement "fournil-form-tel" "Téléphone" (Just "02 32 11 11 11") HP.InputTel []
       , formdivelement "fournil-form-date" "Date d'enlèvement" Nothing HP.InputText []
       , HH.div
+        [ HP.classes $ H.ClassName <$> [ "row", "form-group" ]
+        ]
+        [ HH.label
+          [ HP.for "fournil-card-element"
+          , HP.classes $ H.ClassName <$> [ "col-sm-4", "col-form-label" ]
+          ]
+          [ HH.text "Carte de crédit"
+          , HH.img
+              [ HP.class_ $ H.ClassName "fournil-card-image"
+              , HP.alt "Sécurisé par Stripe"
+              , HP.src (shop^_.stripeImage)
+              ]
+          ]
+        , HH.div
+          [ HP.class_ $ H.ClassName "col-sm-8" ]
+          [ HH.div
+            [ HP.id_ "fournil-card-element"
+            , HP.class_ $ H.ClassName "form-control"
+            ]
+            []
+          , HH.div
+            [ HP.class_ $ H.ClassName "fournil-card-error"
+            , HP.id_ "fournil-card-errors"
+            , HPA.role "alert"
+            , HC.style do
+              CSS.display CSS.displayNone
+            ]
+            []
+          ]
+        ]
+      , HH.input
+        [ HP.id_ "fournil-card-tokenid"
+        , HP.type_ HP.InputHidden
+        , HP.ref (H.RefLabel "fournil-card-tokenid")
+        ]
+      , HH.div
         [ HP.class_ $ H.ClassName "form-group" ]
         [ HH.div
           [ HP.class_ $ H.ClassName "form-submit" ]
@@ -183,13 +236,13 @@ shopUI shop = H.lifecycleComponent
       ]
       [ HH.label
         [ HP.classes $ H.ClassName <$>
-          [ "col-sm-2"
+          [ "col-sm-4"
           , "col-form-label"
           ]
         ]
         [ HH.text desc ]
       , HH.div
-        [ HP.classes $ H.ClassName <$> [ "col-sm-10" ]
+        [ HP.classes $ H.ClassName <$> [ "col-sm-8" ]
         ]
         [ HH.input $
           [ HP.type_ inputtype
@@ -266,16 +319,21 @@ shopUI shop = H.lifecycleComponent
      H.liftEff $ preventDefault event
      state <- H.get
      H.modify (_ { processing = true })
+     stripe <- maybe (H.liftEff $ throw "Erreur d'initialisation de Stripe") pure (state.stripe)
+     card <- maybe (H.liftEff $ throw "Erreur d'initialisation de Stripe.Card") pure (state.card)
+     H.liftAff $ toAff (stripeCreateToken stripe card)
      name <- getRefValue "fournil-form-nom"
      email <- getRefValue "fournil-form-email"
      phone <- getRefValue "fournil-form-tel"
      date <- getRefValue "fournil-form-date"
+     tokenid <- getRefValue "fournil-card-tokenid"
      let formdata = ChargeForm
            { "name"     : name
            , "email"    : email
            , "phone"    : phone
            , "date"     : date
            , "articles" : map (\ps -> Article { product : ps.product, quantity : ps.quantity }) state.produits
+           , "tokenid"  : tokenid
            }
      res <- H.liftAff $ post (shop^_.serverUrl <> shop^_.chargeUrl) (encodeJson formdata)
      case decodeJson (res.response) :: Either String ChargeResponse of
@@ -288,6 +346,11 @@ shopUI shop = H.lifecycleComponent
     pure next
   eval (Initialize next) = do
     _ <- H.liftEff $ pikadayNew "fournil-form-date"
+    stripe <- H.liftEff $ stripeStripe (shop^_.stripeApiKey)
+    elements <- H.liftEff $ stripeElements stripe
+    card <- H.liftEff $ stripeCard elements
+    H.modify (_ { stripe = Just stripe, card = Just card })
+    H.liftEff $ stripeCardMount card "#fournil-card-element"
     pure next
 
   getRefValue label = do

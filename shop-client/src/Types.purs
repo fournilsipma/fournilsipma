@@ -58,9 +58,11 @@ instance encodeJsonProduct :: EncodeJson Product where
 
 -- Shop
 newtype Shop = Shop
-  { produits  :: Array Product
-  , serverUrl :: String
-  , chargeUrl :: String
+  { produits     :: Array Product
+  , serverUrl    :: String
+  , chargeUrl    :: String
+  , stripeImage  :: String
+  , stripeApiKey :: String
   }
 
 derive instance newtypeShop :: Newtype Shop _
@@ -115,6 +117,7 @@ newtype ChargeForm = ChargeForm
   , date     :: String
   -- ^ TODO: use Date type
   , articles :: Array Article
+  , tokenid  :: String
   }
 
 derive instance newtypeChargeForm :: Newtype ChargeForm _
@@ -140,6 +143,7 @@ instance encodeJsonChargeForm :: EncodeJson ChargeForm where
     ~> "phone" := p.phone
     ~> "date" := p.date
     ~> "articles" := p.articles
+    ~> "tokenid" := p.tokenid
     ~> jsonEmptyObject
 
 -- ChargeResponse
