@@ -30,11 +30,6 @@
     , "poids": 1000
     , "prix": 550
     }
-  , { "nom": "Seigle T80"
-    , "description": ""
-    , "poids": 1000
-    , "prix": 590
-    }
   , { "nom": "Engrain T80"
     , "description": ""
     , "poids": 800
