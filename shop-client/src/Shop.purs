@@ -211,7 +211,9 @@ shopUI shop = H.lifecycleComponent
           [ HH.button
             ( [ HP.classes $ H.ClassName <$>
                 [ "btn"
-                , "btn-success"
+                , "btn-outline-success"
+                , "btn-lg"
+                , "btn-block"
                 ]
               , HP.type_ HP.ButtonSubmit
               ] <> if st.total == 0 || st.processing then [ HP.disabled true ] else []
