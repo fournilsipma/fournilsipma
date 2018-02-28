@@ -1,6 +1,7 @@
 ---
 title: "Meunerie"
 menu: "main"
+weight: 6
 ---
 
 L'atelier meunerie nous permet de boucler la boucle entre notre grain

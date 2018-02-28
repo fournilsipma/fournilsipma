@@ -1,6 +1,7 @@
 ---
 title: "Historique"
 menu: "main"
+weight: 2
 ---
 
 Installés sur la ferme familiale depuis 1998, nous avons engagés une
