@@ -274,6 +274,7 @@ shopUI shop = H.lifecycleComponent
         [ HH.input
           [ HP.value $ show ps.quantity
           , HP.type_ HP.InputNumber
+          , HP.min 0.0
           , HP.class_ $ H.ClassName "form-control"
           , HE.onValueInput (HE.input $ SetQuantity ps)
           ]
