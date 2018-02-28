@@ -1,0 +1,5 @@
+<div class="text-center">
+  <a href="{{ .Get "pdf-src" | relURL }}">
+    <img src="{{ .Get "img-src" | relURL }}" class="{{ if (.Get "class") }}{{ with .Get "class"}}{{.}}{{ end }}{{  else }}fournil-content-img{{ end }}"{{ if (.Get "alt") }} alt="{{ with .Get "alt"}}{{.}}{{ end }}"{{ end }} />
+  </a>
+</div>
