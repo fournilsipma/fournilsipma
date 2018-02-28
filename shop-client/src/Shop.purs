@@ -340,8 +340,12 @@ shopUI shop = H.lifecycleComponent
      res <- H.liftAff $ post (shop^_.serverUrl <> shop^_.chargeUrl) (encodeJson formdata)
      case decodeJson (res.response) :: Either String ChargeResponse of
        Left err -> H.modify (_ { processing = false, response = Just $ ResponseDecodeError err })
-       Right cr -> H.modify (_ { processing = false, response = Just $ ResponseSuccess cr })
-       -- TODO: reinit products quantities
+       Right cr -> H.modify (_
+          { processing = false
+          , response = Just $ ResponseSuccess cr
+          , produits = initialState.produits
+          , total = initialState.total
+          })
      pure next
   eval (DiscardResponse next) = do
     H.modify (_ { response = Nothing })
