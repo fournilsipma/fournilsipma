@@ -1,49 +1,49 @@
 { "produits":
   [
-    { "nom": "Semi complet T80"
+    { "nom": "Pain semi complet"
     , "description": ""
     , "poids": 1000
     , "prix": 520
     }
-  , { "nom": "Pavot T80"
+  , { "nom": "Pain complet"
+    , "description": ""
+    , "poids": 1000
+    , "prix": 550
+    }
+  , { "nom": "Pain au Pavot"
     , "description": ""
     , "poids": 800
     , "prix": 600
     }
-  , { "nom": "Tournesol T80"
+  , { "nom": "Pain au Tournesol"
     , "description": ""
     , "poids": 800
     , "prix": 550
     }
-  , { "nom": "Noisette Raisin T80"
+  , { "nom": "Pain Lin Courge"
+    , "description": ""
+    , "poids": 800
+    , "prix": 600
+    }
+  , { "nom": "Pain Noisette Raisin"
     , "description": ""
     , "poids": 800
     , "prix": 740
     }
-  , { "nom": "Lin Courge T80"
-    , "description": ""
-    , "poids": 800
-    , "prix": 600
-    }
-  , { "nom": "Complet T80"
-    , "description": ""
-    , "poids": 1000
-    , "prix": 550
-    }
-  , { "nom": "Engrain T80"
-    , "description": ""
-    , "poids": 800
-    , "prix": 790
-    }
-  , { "nom": "Grand Épeautre T80"
+  , { "nom": "Pain Grand Épeautre"
     , "description": ""
     , "poids": 1000
     , "prix": 700
     }
-  , { "nom": "Méteil T80"
-    , "description": "moitié seigle et moitié blé"
+  , { "nom": "Pain de Méteil"
+    , "description": "moitié seigle et moitié froment"
     , "poids": 1000
     , "prix": 570
+    }
+  , { "nom": "Pain d'Engrain"
+    , "description": ""
+    , "poids": 800
+    , "prix": 790
     }
   ]
 , "serverUrl": "https://api.fournilsipma.fr"
