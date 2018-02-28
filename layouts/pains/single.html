@@ -1,0 +1,27 @@
+{{ define "head" }}
+{{ end }}
+
+{{ define "main" }}
+{{ .Content }}
+<div class="row">
+  {{ range .Site.Data.fournil.produits }}
+  <div class="col-md-4 mb-3">
+    <div class="card">
+      <img class="card-img-top" src="{{ .image | relURL }}" alt="{{ .nom }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ .nom }}</h5>
+        <p class="card-text">{{ .longDescription }}</p>
+        <p class="card-text"><small class="text-muted">{{ .allergenes }}</small></p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{ .poids }}g</li>
+        <li class="list-group-item">{{ lang.NumFmt 2 (div .prix 100) }}€</li>
+      </ul>
+    </div>
+  </div>
+  {{ end }}
+</div>
+{{ end }}
+
+{{ define "footer" }}
+{{ end }}
