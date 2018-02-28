@@ -12,6 +12,10 @@ Le moulin à meule de granit, de type Astrier, nous a été fourni par des
 gens du Sud-Ouest qui savent transmettre (avec leur bon sens et leur
 accent) leur goût du travail bien fait.
 
+{{< img src="img/meule.jpg" class="fournil-content-img" alt="Meule" >}}
+
 L'équipe du fournil répondra avec plaisir à toutes vos curiosités, et
 pourra même, à l'occasion, vous faire visiter l'atelier, du nettoyage du
 grain à l'ensachage de la farine.
+
+{{< img src="img/moulin.jpg" class="fournil-content-img" alt="Moulin" >}}
