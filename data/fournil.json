@@ -76,5 +76,5 @@
 , "serverUrl": "https://api.fournilsipma.fr"
 , "chargeUrl": "/charge"
 , "stripeImage": "/img/secured-payment-stripe.png"
-, "stripeApiKey": "pk_test_i4qnVMjlbMOcwrht2j68sgdB"
+, "stripeApiKey": "pk_live_wRHas5jjhHhzmxUdvFvXaZWV"
 }
