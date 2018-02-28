@@ -48,7 +48,7 @@ foreign import stripeCreateToken :: Stripe -> Card -> Promise Unit
 type APIKey = String
 
 fournilShopJson :: String
-fournilShopJson = "/fournil-produits.json"
+fournilShopJson = "/fournil.json"
 
 type ProductState = { product :: Product, pindex :: Int, quantity :: Int }
 

@@ -57,7 +57,7 @@ img:
 	cp node_modules/leaflet/dist/images/* $(DIST_STATIC)/img/
 
 produits:
-	cp $(STATIC)/*.json $(DIST_STATIC)/
+	cp data/fournil.json $(DIST_STATIC)/
 
 shopclient:
 	cd shop-client && make
