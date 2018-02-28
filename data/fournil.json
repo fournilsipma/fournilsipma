@@ -50,7 +50,7 @@
     }
   , { "nom": "Pain Grand Épeautre"
     , "description": ""
-    , "longDescription": "Farine de froment T80, levain de seigle et froment, sel, eau"
+    , "longDescription": "Farine de grand épeautre, levain de seigle et froment, sel, eau"
     , "allergenes": "Allergène céréales contenant du gluten : épeautre, seigle"
     , "image": "img/pain_grand_epeautre.jpg"
     , "poids": 1000
