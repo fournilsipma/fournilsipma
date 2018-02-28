@@ -5,5 +5,4 @@ type: "commandes"
 weight: 10
 ---
 
-Vous pouvez passer vos commandes par téléphone, par email, ou via le formulaire
-suivant, **jusqu'à l'avant-veille** de votre venue.
+### Vous pouvez passer vos commandes par téléphone, par email, ou via le formulaire suivant, **jusqu'à l'avant-veille** de votre venue (**= 2 jours avant**).
