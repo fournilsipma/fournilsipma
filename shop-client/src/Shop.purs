@@ -95,7 +95,7 @@ shopUI shop = H.lifecycleComponent
     maybe [] alertdiv state.response <>
     [ HH.table
       [ HP.classes $ H.ClassName <$>
-        [ "fournil-shop"
+        [ "fournil-table"
         , "table"
         ]
       ]
