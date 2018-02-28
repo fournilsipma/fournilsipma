@@ -4,6 +4,8 @@ menu: "main"
 weight: 5
 ---
 
+{{< img src="img/vallon.jpg" class="fournil-content-img" alt="Vallon">}}
+
 Dans un esprit de respect de l'environnement, nous avons initié sur la ferme en
 2013 un projet de plantation de lignes d'arbres à destination de bois d'oeuvre
 cultivés en association avec les céréales.
