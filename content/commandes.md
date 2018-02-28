@@ -2,6 +2,7 @@
 title: "Commandes"
 menu: "main"
 type: "commandes"
+weight: 10
 ---
 
 Vous pouvez passer vos commandes par téléphone, par email, ou via le formulaire
