@@ -24,11 +24,14 @@ myOptions = defaultOptions { unwrapSingleConstructors = true }
 
 -- Product
 newtype Product = Product
-  { nom         :: String
-  , description :: String
-  , poids       :: Int
+  { nom             :: String
+  , description     :: String
+  , longDescription :: String
+  , allergenes      :: String
+  , image           :: String
+  , poids           :: Int
   -- ^ poids en grammes
-  , prix        :: Int
+  , prix            :: Int
   -- ^ prix en centimes d'euros
   }
 
