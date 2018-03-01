@@ -4,15 +4,15 @@ menu: "main"
 weight: 2
 ---
 
-Jocelyne et Franck ont créé leur foyer il y une vingtaine d'année (un bail !).
-Trois enfants sont arrivés depuis qui atteignent maintenant l'âge de la sortie
-du nid.
+**Jocelyne** et **Franck** ont créé leur foyer il y a une vingtaine d'année (un
+bail !). Trois enfants sont arrivés depuis qui atteignent maintenant l'âge de
+la sortie du nid.
 
-A l'installation de Franck sur la ferme familiale en 1998, Jocelyne occupe un
-poste de bibliothécaire sur le territoire (Vernon, puis Gasny).
+A l'installation de **Franck** sur la ferme familiale en 1998, **Jocelyne**
+occupe un poste de bibliothécaire sur le territoire (Vernon, puis Gasny).
 
 Les emprunts remboursés, les enfants élevés, nous reconduisons aujourd'hui le
-bail avec la création de la SCEA Fournil Sipma au sein de laquelle nous sommes
+bail avec la création de la **SCEA Fournil Sipma** au sein de laquelle nous sommes
 associés.
 
 La société est certifiée en agriculture biologique, après une conversion
@@ -24,11 +24,11 @@ parcelles en 2013.
 C'est en 2012 que nous avons réfléchi à la transformation du grain produit sur
 le ferme, en farine puis en pain, à l'occasion d'une formation de
 paysan-boulanger ; et c'est 5 ans plus tard, en octobre dernier, que la
-rencontre avec Geoffrey a permis le déclenchement du projet de vente directe.
-Cette nouvelle activité autorise, en effet, la création d'un poste de boulanger
-à plein temps.
+rencontre avec **Geoffrey** a permis le déclenchement du projet de vente
+directe. Cette nouvelle activité autorise, en effet, la création d'un poste de
+boulanger à plein temps.
 
-Geoffrey, né il y a 39 ans près de Valenciennes, fort de sa formation de
+**Geoffrey**, né il y a 39 ans près de Valenciennes, fort de sa formation de
 compagnon du tour de France, et des ses expériences en boulangerie, a acquis de
 solides compétences dans le domaine. Il est une des clefs de la réalisation du
 projet, et de part sa générosité qui coule dans son sang Cht'i, il participe
