@@ -4,22 +4,38 @@ menu: "main"
 weight: 2
 ---
 
-Installés sur la ferme familiale depuis 1998, nous avons engagés une
-conversion en agriculture biologique des parcelles de terre les plus
-fertiles (40 ha) depuis 2015.
+Jocelyne et Franck ont créé leur foyer il y une vingtaine d'année (un bail !).
+Trois enfants sont arrivés depuis qui atteignent maintenant l'âge de la sortie
+du nid.
 
-Dans la logique d'une sensibilité environnementale particulière, nous
-avons également planté des lignes agroforestières sur une partie de ces
-mêmes parcelles (10 ha) en 2013.
+A l'installation de Franck sur la ferme familiale en 1998, Jocelyne occupe un
+poste de bibliothécaire sur le territoire (Vernon, puis Gasny).
 
-C'est en 2012 que nous avons réfléchi à la transformation du grain
-produit sur la ferme en farine puis en pain à l'occasion d'une formation
-paysan-boulanger, et c'est 5 ans plus tard, en octobre dernier, que la
-rencontre avec Geoffrey le boulanger a permis le déclenchement du projet
-de vente directe.
+Les emprunts remboursés, les enfants élevés, nous reconduisons aujourd'hui le
+bail avec la création de la SCEA Fournil Sipma au sein de laquelle nous sommes
+associés.
 
-**C'est avec fierté et plaisir que nous vous accueillons désormais au
-fournil pour échanger sur nos métiers, nos produits, et leurs origines
-on ne peut plus locales.**
+La société est certifiée en agriculture biologique, après une conversion
+obligatoire de 3 ans initiée en 2015 sur 40 ha des parcelles de terres les plus
+fertiles. Dans la logique d'une sensibilité environnementale particulière, nous
+avons planté des lignes agroforestières sur une partie (10ha) de ces mêmes
+parcelles en 2013.
+
+C'est en 2012 que nous avons réfléchi à la transformation du grain produit sur
+le ferme, en farine puis en pain, à l'occasion d'une formation de
+paysan-boulanger ; et c'est 5 ans plus tard, en octobre dernier, que la
+rencontre avec Geoffrey a permis le déclenchement du projet de vente directe.
+Cette nouvelle activité autorise, en effet, la création d'un poste de boulanger
+à plein temps.
+
+Geoffrey, né il y a 39 ans près de Valenciennes, fort de sa formation de
+compagnon du tour de France, et des ses expériences en boulangerie, a acquis de
+solides compétences dans le domaine. Il est une des clefs de la réalisation du
+projet, et de part sa générosité qui coule dans son sang Cht'i, il participe
+chaque jour à la réussite du projet et au succès qu'il rencontre auprès de la
+clientèle.
+
+Ainsi, c'est avec fierté et plaisir que nous vous accueillons désormais au
+fournil pour échanger sur nos métiers, nos produits et leurs origines.
 
 {{< img src="img/camion_patate.jpg" class="fournil-content-img" alt="Camion à patates Sipma">}}
