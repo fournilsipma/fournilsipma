@@ -28,12 +28,11 @@ rencontre avec **Geoffrey** a permis le déclenchement du projet de vente
 directe. Cette nouvelle activité autorise, en effet, la création d'un poste de
 boulanger à plein temps.
 
-**Geoffrey**, né il y a 39 ans près de Valenciennes, fort de sa formation de
-compagnon du tour de France, et des ses expériences en boulangerie, a acquis de
-solides compétences dans le domaine. Il est une des clefs de la réalisation du
-projet, et de part sa générosité qui coule dans son sang Cht'i, il participe
-chaque jour à la réussite du projet et au succès qu'il rencontre auprès de la
-clientèle.
+**Geoffrey** est né il y a 39 ans près de Valenciennes. Lors de ses nombreuses
+expériences en boulangerie, il a acquis de solides compétences dans le domaine.
+Il est une des clefs de la réalisation du projet, et de part la générosité qui
+coule dans son sang Cht'i, il participe chaque jour à la réussite du fournil et
+au succès qu'il rencontre auprès de la clientèle.
 
 Ainsi, c'est avec fierté et plaisir que nous vous accueillons désormais au
 fournil pour échanger sur nos métiers, nos produits et leurs origines.
