@@ -4,6 +4,8 @@ menu: "main"
 weight: 2
 ---
 
+{{< img src="img/camion_patate.jpg" class="fournil-content-img" alt="Camion à patates Sipma">}}
+
 **Jocelyne** et **Franck** ont créé leur foyer il y a une vingtaine d'année (un
 bail !). Trois enfants sont arrivés depuis qui atteignent maintenant l'âge de
 la sortie du nid.
@@ -37,4 +39,4 @@ au succès qu'il rencontre auprès de la clientèle.
 Ainsi, c'est avec fierté et plaisir que nous vous accueillons désormais au
 fournil pour échanger sur nos métiers, nos produits et leurs origines.
 
-{{< img src="img/camion_patate.jpg" class="fournil-content-img" alt="Camion à patates Sipma">}}
+{{< img src="img/four_origine.jpg" class="fournil-content-img" alt="Four d'origine">}}
