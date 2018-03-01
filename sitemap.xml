@@ -7,8 +7,19 @@
   </url>
   
   <url>
-    <loc>http://fournilsipma.fr/categories/</loc>
-    <priority>0</priority>
+    <loc>http://fournilsipma.fr/historique/</loc>
+  </url>
+  
+  <url>
+    <loc>http://fournilsipma.fr/cultures/</loc>
+  </url>
+  
+  <url>
+    <loc>http://fournilsipma.fr/meunerie/</loc>
+  </url>
+  
+  <url>
+    <loc>http://fournilsipma.fr/pains/</loc>
   </url>
   
   <url>
@@ -16,7 +27,8 @@
   </url>
   
   <url>
-    <loc>http://fournilsipma.fr/historique/</loc>
+    <loc>http://fournilsipma.fr/categories/</loc>
+    <priority>0</priority>
   </url>
   
   <url>

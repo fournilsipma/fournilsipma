@@ -11,24 +11,53 @@
     
     
     <item>
-      <title>Commandes</title>
-      <link>http://fournilsipma.fr/commandes/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://fournilsipma.fr/commandes/</guid>
-      <description>Vous pouvez passer vos commandes par téléphone ou par email, jusqu&amp;rsquo;à l&amp;rsquo;avant-veille de votre venue.
-Un formulaire de commande en ligne sera prochainement accessible sur cette page.</description>
-    </item>
-    
-    <item>
       <title>Historique</title>
       <link>http://fournilsipma.fr/historique/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://fournilsipma.fr/historique/</guid>
-      <description>Installés sur la ferme familiale depuis 1998, nous avons engagés une conversion en agriculture biologique des parcelles de terre les plus fertiles (40 ha) depuis 2015.
-Dans la logique d&amp;rsquo;une sensibilité environnementale particulière, nous avons également planté des lignes agroforestières sur une partie de ces mêmes parcelles (10 ha) en 2013.
-C&amp;rsquo;est en 2012 que nous avons réfléchi à la transformation du grain produit sur la ferme en farine puis en pain à l&amp;rsquo;occasion d&amp;rsquo;une formation paysan-boulanger, et c&amp;rsquo;est 5 ans plus tard, en octobre dernier, que la rencontre avec Geoffrey le boulanger a permis le déclenchement du projet de vente directe.</description>
+      <description>Jocelyne et Franck ont créé leur foyer il y a une vingtaine d&amp;rsquo;année (un bail !). Trois enfants sont arrivés depuis qui atteignent maintenant l&amp;rsquo;âge de la sortie du nid.
+A l&amp;rsquo;installation de Franck sur la ferme familiale en 1998, Jocelyne occupe un poste de bibliothécaire sur le territoire (Vernon, puis Gasny).
+Les emprunts remboursés, les enfants élevés, nous reconduisons aujourd&amp;rsquo;hui le bail avec la création de la SCEA Fournil Sipma au sein de laquelle nous sommes associés.</description>
+    </item>
+    
+    <item>
+      <title>Cultures</title>
+      <link>http://fournilsipma.fr/cultures/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://fournilsipma.fr/cultures/</guid>
+      <description> Dans un esprit de respect de l&amp;rsquo;environnement, nous avons initié sur la ferme en 2013 un projet de plantation de lignes d&amp;rsquo;arbres à destination de bois d&amp;rsquo;oeuvre cultivés en association avec les céréales.
+Cette technique fait partie de l&amp;rsquo;agroforesterie, terme assez récent désignant une technique pourtant ancienne (pré-verger en Normandie), détaillée dans le pdf ci-dessous (cliquez dessus pour télécharger le fichier).
+  </description>
+    </item>
+    
+    <item>
+      <title>Meunerie</title>
+      <link>http://fournilsipma.fr/meunerie/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://fournilsipma.fr/meunerie/</guid>
+      <description>L&amp;rsquo;atelier meunerie nous permet de boucler la boucle entre notre grain produit selon les normes de l&amp;rsquo;agriculture biologique et notre farine, dont la qualité de mouture est ajustée au mieux par les réglages de débit de grain et d&amp;rsquo;écartement entre les meules.
+Le moulin à meule de granit, de type Astrier, nous a été fourni par des gens du Sud-Ouest qui savent transmettre (avec leur bon sens et leur accent) leur goût du travail bien fait.</description>
+    </item>
+    
+    <item>
+      <title>Pains</title>
+      <link>http://fournilsipma.fr/pains/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://fournilsipma.fr/pains/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Commandes</title>
+      <link>http://fournilsipma.fr/commandes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://fournilsipma.fr/commandes/</guid>
+      <description> Vous pouvez passer vos commandes par téléphone, par email, ou via le formulaire suivant, jusqu&amp;rsquo;à l&amp;rsquo;avant-veille de votre venue (= 2 jours avant). </description>
     </item>
     
   </channel>
