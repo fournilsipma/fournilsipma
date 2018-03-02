@@ -3,7 +3,10 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <title>{{ block "title" . }}{{ .Site.Title }} - {{ .Title }}{{ end }}</title>
+    <title>{{ $isHomePage := eq .Title .Site.Title }}{{ .Title }}{{ if eq $isHomePage false }} - {{ .Site.Title }}{{ end }}</title>
+    <meta content="{{ $isHomePage := eq .Title .Site.Title }}{{ .Title }}{{ if eq $isHomePage false }} - {{ .Site.Title }}{{ end }}" property="og:title">
+    <meta content="{{ delimit .Keywords ", " }}" name="keywords">
+    <meta content="{{ $isHomePage := eq .Title .Site.Title }}{{ .Site.Params.description }}{{ if eq $isHomePage false }} - {{ .Title }}{{ end }}" property="og:description">
     {{ block "head" . }}{{ end }}
     <link href="{{ "css/fournil.min.css" | relURL }}" rel="stylesheet" type="text/css">
   </head>
