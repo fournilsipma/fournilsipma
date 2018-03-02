@@ -15,6 +15,9 @@ keywords:
 - ferme
 - boulangerie à la ferme
 - meunerie
+- bio
+- biologique
+- pain bio
 ---
 
 ### Le magasin est ouvert **du mardi au samedi, de 16h30 à 19h30**
