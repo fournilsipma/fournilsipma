@@ -63,19 +63,27 @@ exports.stripeCardMount = function (card) {
     };
 }
 
-exports.stripeCreateToken = function (stripe) {
+exports.stripeCreateTokenRaw = function (stripe) {
     return function (card) {
-        return stripe.createToken(card).then(function(result) {
-            if (result.error) {
-                // Inform the user if there was an error
-                var errorElement = document.getElementById('fournil-card-errors');
-                // TODO: use config
-                errorElement.textContent = result.error.message;
-            } else {
-                // Set the tokenid
-                var tk = document.getElementById('fournil-card-tokenid');
-                tk.setAttribute('value', result.token.id);
-            }
-        });
+        return function (left) {
+            return function (right) {
+                return function () {
+                    return stripe.createToken(card).then(function(result) {
+                        if (result.error) {
+                            // Inform the user if there was an error
+                            var errorElement = document.getElementById('fournil-card-errors');
+                            // TODO: use config
+                            errorElement.textContent = result.error.message;
+                            return left(result.error.message);
+                        } else {
+                            // Set the tokenid
+                            var tk = document.getElementById('fournil-card-tokenid');
+                            tk.setAttribute('value', result.token.id);
+                            return right(result.token.id);
+                        }
+                    });
+                };
+            };
+        };
     };
 }

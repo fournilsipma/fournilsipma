@@ -44,8 +44,16 @@ foreign import stripeStripe :: forall eff. APIKey -> Eff (stripe :: STRIPE | eff
 foreign import stripeElements :: forall eff. Stripe -> Eff (stripe :: STRIPE | eff) Elements
 foreign import stripeCard :: forall eff. Elements -> Eff (stripe :: STRIPE | eff) Card
 foreign import stripeCardMount :: forall eff. Card -> String -> Eff (stripe :: STRIPE | eff) Unit
-foreign import stripeCreateToken :: Stripe -> Card -> Promise Unit
+foreign import stripeCreateTokenRaw :: forall eff. Stripe -> Card -> (String -> Either StripeError TokenId) -> (String -> Either StripeError TokenId) -> Eff (stripe :: STRIPE | eff) (Promise (Either StripeError TokenId))
 type APIKey = String
+type StripeError = String
+type TokenId = String
+
+stripeCreateTokenPromise :: forall eff. Stripe -> Card -> Eff (stripe :: STRIPE | eff) (Promise (Either StripeError TokenId))
+stripeCreateTokenPromise s c = stripeCreateTokenRaw s c (\x -> Left x) (\x -> Right x)
+
+stripeCreateToken :: forall eff. Stripe -> Card -> Aff (stripe :: STRIPE | eff) (Either StripeError TokenId)
+stripeCreateToken stripe card = H.liftEff (stripeCreateTokenPromise stripe card) >>= toAff
 
 fournilShopJson :: String
 fournilShopJson = "/fournil.json"
@@ -319,35 +327,41 @@ shopUI shop = H.lifecycleComponent
       Nothing -> pure next
         -- ^ TODO: add error message
   eval (SubmitForm event next) = do
-     H.liftEff $ preventDefault event
-     state <- H.get
-     H.modify (_ { processing = true })
-     stripe <- maybe (H.liftEff $ throw "Erreur d'initialisation de Stripe") pure (state.stripe)
-     card <- maybe (H.liftEff $ throw "Erreur d'initialisation de Stripe.Card") pure (state.card)
-     H.liftAff $ toAff (stripeCreateToken stripe card)
-     name <- getRefValue "fournil-form-nom"
-     email <- getRefValue "fournil-form-email"
-     phone <- getRefValue "fournil-form-tel"
-     date <- getRefValue "fournil-form-date"
-     tokenid <- getRefValue "fournil-card-tokenid"
-     let formdata = ChargeForm
-           { "name"     : name
-           , "email"    : email
-           , "phone"    : phone
-           , "date"     : date
-           , "articles" : map (\ps -> Article { product : ps.product, quantity : ps.quantity }) state.produits
-           , "tokenid"  : tokenid
-           }
-     res <- H.liftAff $ post (shop^_.serverUrl <> shop^_.chargeUrl) (encodeJson formdata)
-     case decodeJson (res.response) :: Either String ChargeResponse of
-       Left err -> H.modify (_ { processing = false, response = Just $ ResponseDecodeError err })
-       Right cr -> H.modify (_
-          { processing = false
-          , response = Just $ ResponseSuccess cr
-          , produits = initialState.produits
-          , total = initialState.total
-          })
-     pure next
+    H.liftEff $ preventDefault event
+    state <- H.get
+    H.modify (_ { processing = true })
+    stripe <- maybe (H.liftEff $ throw "Erreur d'initialisation de Stripe") pure (state.stripe)
+    card <- maybe (H.liftEff $ throw "Erreur d'initialisation de Stripe.Card") pure (state.card)
+    striperesult <- H.liftAff (stripeCreateToken stripe card)
+    case striperesult of
+      Left _ -> do
+        H.modify (_ { processing = false })
+        -- ^ TODO: display error?
+        pure next
+      Right tokid -> do
+        name <- getRefValue "fournil-form-nom"
+        email <- getRefValue "fournil-form-email"
+        phone <- getRefValue "fournil-form-tel"
+        date <- getRefValue "fournil-form-date"
+        tokenid <- getRefValue "fournil-card-tokenid"
+        let formdata = ChargeForm
+              { "name"     : name
+              , "email"    : email
+              , "phone"    : phone
+              , "date"     : date
+              , "articles" : map (\ps -> Article { product : ps.product, quantity : ps.quantity }) state.produits
+              , "tokenid"  : tokenid
+              }
+        res <- H.liftAff $ post (shop^_.serverUrl <> shop^_.chargeUrl) (encodeJson formdata)
+        case decodeJson (res.response) :: Either String ChargeResponse of
+          Left err -> H.modify (_ { processing = false, response = Just $ ResponseDecodeError err })
+          Right cr -> H.modify (_
+             { processing = false
+             , response = Just $ ResponseSuccess cr
+             , produits = initialState.produits
+             , total = initialState.total
+             })
+        pure next
   eval (DiscardResponse next) = do
     H.modify (_ { response = Nothing })
     pure next
