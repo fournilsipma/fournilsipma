@@ -13,12 +13,15 @@ import Data.Either                  (Either(..))
 import Data.Int                     (toNumber, fromString)
 import Data.List                    (List(Nil), (:))
 import Data.Maybe                   (Maybe(..), maybe)
-import Data.Foldable                (foldl)
+import Data.Foldable                (foldl, for_)
 import DOM                          (DOM)
 import DOM.Classy.HTMLElement       (fromHTMLElement)
 import DOM.Event.Event              (preventDefault)
 import DOM.Event.Types              (Event)
+import DOM.HTML.HTMLElement         (offsetHeight)
 import DOM.HTML.HTMLInputElement    (value)
+import DOM.HTML.Types               (htmlElementToElement)
+import DOM.Node.Element             (scrollHeight, setScrollTop)
 import Halogen                      as H
 import Halogen.HTML                 as HH
 import Halogen.HTML.Core            (PropName(..))
@@ -142,6 +145,7 @@ shopUI shop = H.lifecycleComponent
               ResponseDecodeError _ -> "alert-danger"
               ResponseSuccess _ -> "alert-success"
           ]
+        , HP.ref (H.RefLabel "fournil-message")
         ] $
         ( case res of
             ResponseDecodeError err -> [ HH.text $ "Erreur: " <> err ]
@@ -336,8 +340,7 @@ shopUI shop = H.lifecycleComponent
     case striperesult of
       Left _ -> do
         H.modify (_ { processing = false })
-        -- ^ TODO: display error?
-        pure next
+        -- ^ error already displayed in fournil-card-errors
       Right tokid -> do
         name <- getRefValue "fournil-form-nom"
         email <- getRefValue "fournil-form-email"
@@ -361,7 +364,16 @@ shopUI shop = H.lifecycleComponent
              , produits = initialState.produits
              , total = initialState.total
              })
-        pure next
+        -- Scroll action in PureScript Halogen
+        -- https://stackoverflow.com/a/44543329
+        ref <- H.getHTMLElementRef $ H.RefLabel "fournil-message"
+        for_ ref $ \el -> H.liftEff $ do
+          let hel = htmlElementToElement el
+          sh <- scrollHeight hel
+          oh <- offsetHeight el
+          let maxScroll = sh - oh
+          setScrollTop maxScroll hel
+    pure next
   eval (DiscardResponse next) = do
     H.modify (_ { response = Nothing })
     pure next
