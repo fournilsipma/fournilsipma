@@ -43,7 +43,7 @@
   , { "nom": "Pain Noisette Raisin"
     , "description": ""
     , "longDescription": "Farine de froment T80, levain de seigle et froment, sel, eau, noisettes, raisins"
-    , "allergenes": "Allergènes céréales contenant du gluten : froment, seigle"
+    , "allergenes": "Allergènes céréales contenant du gluten : froment, seigle ; fruits à coque : noisettes"
     , "image": "img/pain_noisette_raisin.jpg"
     , "poids": 800
     , "prix": 740
@@ -75,7 +75,7 @@
   , { "nom": "Brioche nature"
     , "description": ""
     , "longDescription": "Farine de froment T80, œufs, beurre, levain de seigle et froment, levure, sel, eau"
-    , "allergenes": "Allergènes céréales contenant du gluten : froment, seigle"
+    , "allergenes": "Allergènes céréales contenant du gluten : froment, seigle ; œufs"
     , "image": "img/brioche_nature.jpg"
     , "poids": 400
     , "prix": 630
@@ -83,7 +83,7 @@
   , { "nom": "Brioche raisin"
     , "description": ""
     , "longDescription": "Farine de froment T80, œufs, beurre, levain de seigle et froment, levure, sel, eau, raisins secs"
-    , "allergenes": "Allergènes céréales contenant du gluten : froment, seigle"
+    , "allergenes": "Allergènes céréales contenant du gluten : froment, seigle ; œufs"
     , "image": "img/brioche_raisin.jpg"
     , "poids": 400
     , "prix": 690
