@@ -4,15 +4,12 @@ STATIC=./static
 DIST_STATIC=./dist/static
 TMP=./dist/tmp
 
-build: npm tmp css js fonts img pdf produits shopclient site
+build: npm css js fonts img pdf produits shopclient site
 
 npm:
 	npm install
 
-tmp:
-	mkdir -p $(TMP)
-
-css:
+css: npm
 	mkdir -p $(TMP)/css/
 	mkdir -p $(DIST_STATIC)/css
 	sass $(STATIC)/scss/fournil.scss > $(TMP)/css/fournil-base.css
@@ -29,7 +26,7 @@ css:
 	csso $(TMP)/css/fournil-map.css --output $(TMP)/css/fournil-map.min.css
 	cp $(TMP)/css/fournil-map.min.css $(DIST_STATIC)/css/
 
-js:
+js: npm
 	mkdir -p $(TMP)/js/
 	mkdir -p $(DIST_STATIC)/js
 	cat \
@@ -60,10 +57,11 @@ pdf:
 	mkdir -p $(DIST_STATIC)/pdf
 	cp $(STATIC)/pdf/* $(DIST_STATIC)/pdf/
 
-produits:
-	cp data/fournil.json $(DIST_STATIC)/
+produits: npm
+	mkdir -p $(DIST_STATIC)
+	yaml2json data/fournil.yaml >$(DIST_STATIC)/fournil.json
 
-shopclient:
+shopclient: npm
 	cd shop-client && make
 	cat \
 		node_modules/moment/moment.js \

@@ -1,0 +1,96 @@
+produits:
+  - nom: 'Pain semi complet'
+    description: ""
+    longDescription: 'Farine de froment T80, levain de seigle et froment, sel, eau'
+    allergenes: 'Allergènes céréales contenant du gluten : froment, seigle'
+    image: img/pain_semi-complet.jpg
+    poids: 1000
+    prix: 520
+  - nom: 'Pain complet'
+    description: ""
+    longDescription: 'Farine de froment T110, levain de seigle et froment, sel, eau'
+    allergenes: 'Allergènes céréales contenant du gluten : froment, seigle'
+    image: img/pain_complet.jpg
+    poids: 1000
+    prix: 550
+  - nom: 'Pain au Pavot'
+    description: ""
+    longDescription: 'Farine de froment T80, levain de seigle et froment, sel, eau, graines de pavot'
+    allergenes: 'Allergènes céréales contenant du gluten : froment, seigle'
+    image: img/pain_pavot.jpg
+    poids: 800
+    prix: 600
+  - nom: 'Pain au Tournesol'
+    description: ""
+    longDescription: 'Farine de froment T80, levain de seigle et froment, sel, eau, graines de tournesol'
+    allergenes: 'Allergènes céréales contenant du gluten : froment, seigle'
+    image: img/pain_tournesol.jpg
+    poids: 800
+    prix: 550
+  - nom: 'Pain Lin Courge'
+    description: ""
+    longDescription: 'Farine de froment T80, levain de seigle et froment, sel, eau, graines de lin et courge'
+    allergenes: 'Allergènes céréales contenant du gluten : froment, seigle'
+    image: img/pain_lin_courge.jpg
+    poids: 800
+    prix: 600
+  - nom: 'Pain Noisette Raisin'
+    description: ""
+    longDescription: 'Farine de froment T80, levain de seigle et froment, sel, eau, noisettes, raisins'
+    allergenes: 'Allergènes céréales contenant du gluten : froment, seigle ; fruits à coque : noisettes'
+    image: img/pain_noisette_raisin.jpg
+    poids: 800
+    prix: 740
+  - nom: 'Pain Grand Épeautre'
+    description: ""
+    longDescription: 'Farine de grand épeautre, levain de seigle et froment, sel, eau'
+    allergenes: 'Allergènes céréales contenant du gluten : épeautre, seigle'
+    image: img/pain_grand_epeautre.jpg
+    poids: 1000
+    prix: 700
+  - nom: 'Pain d''Engrain'
+    description: ""
+    longDescription: 'Farine d''engrain T150, levain de seigle et froment, sel, eau, graines de pavot'
+    allergenes: 'Allergènes céréales contenant du gluten : engrain, seigle'
+    image: img/pain_engrain.jpg
+    poids: 800
+    prix: 790
+  - nom: 'Pain de Méteil'
+    description: 'moitié seigle et moitié froment'
+    longDescription: 'Farine de seigle T130 et froment T80, levain de seigle et froment, sel, eau'
+    allergenes: 'Allergène céréales contenant du gluten : froment, seigle'
+    image: img/pain_de_meteil.jpg
+    poids: 1000
+    prix: 570
+  - nom: 'Brioche nature'
+    description: ""
+    longDescription: 'Farine de froment T80, œufs, beurre, levain de seigle et froment, levure, sel, eau'
+    allergenes: 'Allergènes céréales contenant du gluten : froment, seigle ; œufs'
+    image: img/brioche_nature.jpg
+    poids: 400
+    prix: 630
+  - nom: 'Brioche raisin'
+    description: ""
+    longDescription: 'Farine de froment T80, œufs, beurre, levain de seigle et froment, levure, sel, eau, raisins secs'
+    allergenes: 'Allergènes céréales contenant du gluten : froment, seigle ; œufs'
+    image: img/brioche_raisin.jpg
+    poids: 400
+    prix: 690
+  - nom: 'Farine de blé T80'
+    description: ""
+    longDescription: ""
+    allergenes: 'Allergènes céréales contenant du gluten : froment'
+    image: img/farine_ble.jpg
+    poids: 1000
+    prix: 200
+  - nom: 'Semoule de maïs'
+    description: ""
+    longDescription: ""
+    allergenes: ""
+    image: img/semoule_mais.jpg
+    poids: 1000
+    prix: 200
+serverUrl: 'https://api.fournilsipma.fr'
+chargeUrl: /charge
+stripeImage: /img/secured-payment-stripe.png
+stripeApiKey: pk_live_wRHas5jjhHhzmxUdvFvXaZWV
