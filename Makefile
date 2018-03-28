@@ -4,7 +4,7 @@ STATIC=./static
 DIST_STATIC=./dist/static
 TMP=./dist/tmp
 
-build: npm css js fonts img pdf produits shopclient site
+build: npm css js fonts img pdf data shopclient site
 
 npm:
 	npm install
@@ -57,7 +57,7 @@ pdf:
 	mkdir -p $(DIST_STATIC)/pdf
 	cp $(STATIC)/pdf/* $(DIST_STATIC)/pdf/
 
-produits: npm
+data: npm
 	mkdir -p $(DIST_STATIC)
 	yaml2json data/fournil.yaml >$(DIST_STATIC)/fournil.json
 
