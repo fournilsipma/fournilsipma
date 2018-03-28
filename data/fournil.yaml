@@ -76,6 +76,13 @@ produits:
     image: img/brioche_raisin.jpg
     poids: 400
     prix: 690
+  - nom: 'Brioche chocolat'
+    description: ""
+    longDescription: 'Farine de froment T80, œufs, beurre, levain de seigle et froment, levure, sel, eau, chocolat'
+    allergenes: 'Allergènes céréales contenant du gluten : froment, seigle ; œufs; chocolat'
+    image: img/brioche_chocolat.jpg
+    poids: 400
+    prix: 790
   - nom: 'Farine de blé T80'
     description: ""
     longDescription: ""
