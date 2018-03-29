@@ -82,7 +82,7 @@ produits:
     allergenes: 'Allergènes céréales contenant du gluten : froment, seigle ; œufs; chocolat'
     image: img/brioche_chocolat.jpg
     poids: 400
-    prix: 790
+    prix: 730
   - nom: 'Farine de blé T80'
     description: ""
     longDescription: ""
