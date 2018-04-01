@@ -1,4 +1,4 @@
-PATH := node_modules/.bin:$(PATH)
+PATH := $(shell npm bin):$(PATH)
 
 build: npm psc-package purescript
 

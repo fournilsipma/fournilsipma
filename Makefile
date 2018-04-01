@@ -1,4 +1,4 @@
-PATH := node_modules/.bin:$(PATH)
+PATH := $(shell npm bin):$(PATH)
 
 STATIC=./static
 DIST_STATIC=./dist/static
