@@ -90,13 +90,6 @@ produits:
     image: img/farine_ble.jpg
     poids: 1000
     prix: 200
-  - nom: 'Semoule de maïs'
-    description: ""
-    longDescription: ""
-    allergenes: ""
-    image: img/semoule_mais.jpg
-    poids: 1000
-    prix: 200
 serverUrl: 'https://api.fournilsipma.fr'
 chargeUrl: /charge
 stripeImage: /img/secured-payment-stripe.png
