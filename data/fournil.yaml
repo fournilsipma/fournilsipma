@@ -46,8 +46,8 @@ produits:
     longDescription: 'Farine de grand épeautre, levain de seigle et froment, sel, eau'
     allergenes: 'Allergènes céréales contenant du gluten : épeautre, seigle'
     image: img/pain_grand_epeautre.jpg
-    poids: 1000
-    prix: 700
+    poids: 800
+    prix: 560
   - nom: 'Pain d''Engrain'
     description: ""
     longDescription: 'Farine d''engrain T150, levain de seigle et froment, sel, eau'
