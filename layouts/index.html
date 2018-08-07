@@ -17,6 +17,24 @@
   });
 </script>
 <script src="{{ "js/fournil-map.min.js" | relURL }}"></script>
+<script src="{{ "js/fournil-holidays.min.js" | relURL }}"></script>
+<script>
+  var holidayranges = ({{ $.Site.Data.fournil.holidays }}).map(function(dr) {
+    return moment.range(dr);
+  }).filter(function(dr) {
+    var drclone = dr.clone();
+    return moment.range(drclone.start.subtract(15, 'days'), drclone.end).contains(moment().hour(0).minute(0).second(0).millisecond(0));
+  });
+  var fournilHolidays = document.getElementById('fournil-holidays');
+  if (holidayranges.length > 0) {
+    var closedranges = [];
+    for (var i = 0; i < holidayranges.length; i++) {
+      closedranges.push(formatRange(holidayranges[i]));
+    }
+    var closedrangesstr = [closedranges.slice(0, -1).join(', '), closedranges.slice(-1)[0]].join(closedranges.length < 2 ? '' : ' et ');
+    fournilHolidays.innerHTML = "Le fournil sera exceptionnellement fermé " + closedrangesstr + ".";
+  }
+</script>
 {{ end }}
 
 {{ define "fournil-nav-classes" }} fournil-nologo-nav{{ end }}
@@ -42,6 +60,9 @@
 <div class="vertical-align">
   <div class="fournil-banner">
     {{ .Content }}
+    <h3>
+      <div id="fournil-holidays"></div>
+    </h3>
     {{ partial "address.html" . }}
     <div id="fournilmap"></div>
   </div>
