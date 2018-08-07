@@ -63,8 +63,9 @@ data: npm
 
 shopclient: npm
 	cd shop-client && make
-	cat \
+	awk 1 \
 		node_modules/moment/moment.js \
+		node_modules/moment-range/dist/moment-range.js \
 		node_modules/pikaday/pikaday.js \
 		shop-client/dist/fournil-shop-client.js \
 		> $(TMP)/js/fournil-shop-client.js

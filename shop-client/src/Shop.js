@@ -1,5 +1,7 @@
 "use strict";
 
+window['moment-range'].extendMoment(moment);
+
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
 // https://tc39.github.io/ecma262/#sec-array.prototype.includes
 if (!Array.prototype.includes) {
@@ -55,7 +57,10 @@ if (!Array.prototype.includes) {
 
 exports.pikadayNew = function (elementid) {
   return function(holidays) {
-    var holidayarray = holidays.map(function(d) { return moment(d).valueOf(); });
+    var holidayranges = holidays.map(function(dr) {
+      return Array.from(moment.range(dr).by('days')).map(function(r) { return r.valueOf(); })
+    });
+    var holidayarray = [].concat.apply([], holidayranges);
     return function () {
       var date = moment().add(2, 'd').toDate();
       var picker = new Pikaday({
