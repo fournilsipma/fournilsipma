@@ -55,7 +55,6 @@ if (!Array.prototype.includes) {
 
 exports.pikadayNew = function (elementid) {
   return function(holidays) {
-    console.debug(holidays);
     var holidayarray = holidays.map(function(d) { return moment(d).valueOf(); });
     return function () {
       var date = moment().add(2, 'd').toDate();
