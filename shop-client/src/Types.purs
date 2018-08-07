@@ -66,6 +66,7 @@ newtype Shop = Shop
   , chargeUrl    :: String
   , stripeImage  :: String
   , stripeApiKey :: String
+  , holidays     :: Array String
   }
 
 derive instance newtypeShop :: Newtype Shop _

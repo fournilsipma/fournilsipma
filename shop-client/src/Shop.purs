@@ -37,7 +37,7 @@ import Types
 
 foreign import data PIKADAY :: Effect
 foreign import data Pikaday :: Type
-foreign import pikadayNew :: forall eff. String -> Eff (pikaday :: PIKADAY | eff) Pikaday
+foreign import pikadayNew :: forall eff. String -> Array String -> Eff (pikaday :: PIKADAY | eff) Pikaday
 
 foreign import data STRIPE :: Effect
 foreign import data Stripe :: Type
@@ -378,7 +378,7 @@ shopUI shop = H.lifecycleComponent
     H.modify (_ { response = Nothing })
     pure next
   eval (Initialize next) = do
-    _ <- H.liftEff $ pikadayNew "fournil-form-date"
+    _ <- H.liftEff $ pikadayNew "fournil-form-date" (shop^_.holidays)
     stripe <- H.liftEff $ stripeStripe (shop^_.stripeApiKey)
     elements <- H.liftEff $ stripeElements stripe
     card <- H.liftEff $ stripeCard elements
