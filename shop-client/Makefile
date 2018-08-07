@@ -6,7 +6,7 @@ npm:
 	npm install
 
 psc-package:
-	psc-package update
+	psc-package install
 
 purescript:
 	pulp browserify --to dist/fournil-shop-client.js
