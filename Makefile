@@ -86,6 +86,6 @@ shopclient: npm
 	cp $(TMP)/css/fournil-shop-client.min.css $(DIST_STATIC)/css/
 
 site:
-	hugo
+	hugo --minify
 
 .PHONY: build
