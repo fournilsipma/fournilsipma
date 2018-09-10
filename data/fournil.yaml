@@ -13,6 +13,13 @@ produits:
     image: img/pain_complet.jpg
     poids: 1000
     prix: 550
+  - nom: 'Pain au Pavot'
+    description: ""
+    longDescription: 'Farine de froment T80, levain de seigle et froment, sel, eau, graines de pavot'
+    allergenes: 'Allergènes céréales contenant du gluten : froment, seigle'
+    image: img/pain_pavot.jpg
+    poids: 800
+    prix: 600
   - nom: 'Pain au Sésame'
     description: ""
     longDescription: 'Farine de froment T80, levain de seigle et froment, sel, eau, graines de sésame'
