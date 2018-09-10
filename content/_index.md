@@ -20,4 +20,4 @@ keywords:
 - biologique
 ---
 
-### Le magasin est ouvert **du mardi au samedi, de 16h30 à 19h30**
+### Le magasin est ouvert **du mardi au vendredi, de 16h30 à 19h30, et le samedi de 10h à 13h**
