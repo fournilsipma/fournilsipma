@@ -4,7 +4,7 @@ STATIC=./static
 DIST_STATIC=./dist/static
 TMP=./dist/tmp
 
-build: npm css js fonts img pdf data shopclient site
+build: npm css js fonts img pdf data site
 
 npm:
 	npm install
@@ -68,22 +68,6 @@ pdf:
 data: npm
 	mkdir -p $(DIST_STATIC)
 	yaml2json data/fournil.yaml >$(DIST_STATIC)/fournil.json
-
-shopclient: npm
-	cd shop-client && make
-	awk 1 \
-		node_modules/moment/moment.js \
-		node_modules/moment-range/dist/moment-range.js \
-		node_modules/pikaday/pikaday.js \
-		shop-client/dist/fournil-shop-client.js \
-		> $(TMP)/js/fournil-shop-client.js
-	uglifyjs --compress --mangle -o $(TMP)/js/fournil-shop-client.min.js $(TMP)/js/fournil-shop-client.js
-	cp $(TMP)/js/fournil-shop-client.min.js $(DIST_STATIC)/js
-	awk 1 \
-		node_modules/pikaday/css/pikaday.css \
-		> $(TMP)/css/fournil-shop-client.css
-	csso $(TMP)/css/fournil-shop-client.css --output $(TMP)/css/fournil-shop-client.min.css
-	cp $(TMP)/css/fournil-shop-client.min.css $(DIST_STATIC)/css/
 
 site:
 	hugo --minify
