@@ -2,6 +2,7 @@
 {{ end }}
 
 {{ define "main" }}
+{{ partial "reservation.html" . }}
 {{ .Content }}
 <div class="row">
   {{ range .Site.Data.fournil.produits }}
