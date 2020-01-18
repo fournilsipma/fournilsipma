@@ -89,7 +89,12 @@ address span {
 }
 
 .fournil-content-img {
-  width: 500px;
+  @media (max-width:576px) {
+    width: 100%;
+  }
+  @media (min-width:577px) {
+    width: 500px;
+  }
 }
 
 .navbar-brand img {
